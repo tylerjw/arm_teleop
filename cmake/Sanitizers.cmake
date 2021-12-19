@@ -60,7 +60,13 @@ function(enable_sanitizers project_name)
         message(WARNING "Thread sanitizer does not work with Address and Leak sanitizer enabled")
       else()
         list(APPEND SANITIZERS "thread")
-        target_compile_options(${project_name} INTERFACE -fsanitize-blacklist=${PROJECT_SOURCE_DIR}/.tsan-blacklist)
+        if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+          target_compile_options(
+            ${project_name} INTERFACE
+            -fsanitize-blacklist=${PROJECT_SOURCE_DIR}/.tsan-blacklist)
+        else()
+          message(WARNING "Thread sanitizer blacklisting only works with clang compiler")
+        endif()
       endif()
     endif()
 
