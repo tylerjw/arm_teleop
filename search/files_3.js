@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visibility_5fcontrol_2eh_24',['visibility_control.h',['../visibility__control_8h.html',1,'']]]
+  ['logger_2ehpp_68',['logger.hpp',['../logger_8hpp.html',1,'']]]
 ];

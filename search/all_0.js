@@ -10,5 +10,6 @@ var searchData=
   ['arm_5fteleop_5fpublic_7',['ARM_TELEOP_PUBLIC',['../visibility__control_8h.html#af5d91e87cf05367055f101ff9c840dee',1,'visibility_control.h']]],
   ['arm_5fteleop_5fpublic_5ftype_8',['ARM_TELEOP_PUBLIC_TYPE',['../visibility__control_8h.html#a0ea3c335f902a01b50b67694cdb192d7',1,'visibility_control.h']]],
   ['armteleop_9',['ArmTeleop',['../classarm__teleop_1_1ArmTeleop.html',1,'arm_teleop::ArmTeleop'],['../classarm__teleop_1_1ArmTeleop.html#ae38fcc72bdb8196da31aae30edbe0158',1,'arm_teleop::ArmTeleop::ArmTeleop()']]],
-  ['arm_5fteleop_10',['arm_teleop',['../index.html',1,'']]]
+  ['detail_10',['detail',['../namespacearm__teleop_1_1detail.html',1,'arm_teleop']]],
+  ['arm_5fteleop_11',['arm_teleop',['../index.html',1,'']]]
 ];
