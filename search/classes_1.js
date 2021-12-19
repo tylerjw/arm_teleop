@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['countingvisitor_60',['CountingVisitor',['../classCountingVisitor.html',1,'']]]
+  ['countingvisitor_63',['CountingVisitor',['../classCountingVisitor.html',1,'']]]
 ];
