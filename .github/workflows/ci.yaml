@@ -20,20 +20,18 @@ jobs:
             ROS_REPO: testing
             TARGET_CMAKE_ARGS: -DENABLE_COVERAGE=ON
             CCOV: true
-          - NAME: "rolling-main-clang"
+          - NAME: "rolling-main"
             ROS_REPO: main
-            ADDITIONAL_DEBS: clang
-            CC: clang
-            CXX: clang++
-            DEPLOY_GH_PAGES: true
           - NAME: "address-leak-ub-sanitizers"
             TARGET_CMAKE_ARGS: >
               -DENABLE_SANITIZER_ADDRESS=ON
               -DENABLE_SANITIZER_LEAK=ON
               -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
-          # TODO(tylerjw): Enable thread sanitizer by excluding ROS
-          # - NAME: "thread-sanitizer"
-          #   TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_THREAD=ON
+          - NAME: "thread-sanitizer-clang"
+            TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_THREAD=ON
+            ADDITIONAL_DEBS: clang
+            CC: clang
+            CXX: clang++
           - NAME: "memory-sanitizer"
             TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_MEMORY=ON
           - NAME: "static-analyzers"
