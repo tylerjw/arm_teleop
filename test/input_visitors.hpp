@@ -29,8 +29,10 @@
 #pragma once
 
 #include <arm_teleop/detail/input_command.hpp>
+#include <atomic>
 #include <control_msgs/msg/joint_jog.hpp>
 #include <geometry_msgs/msg/twist_stamped.hpp>
+#include <mutex>
 #include <rclcpp/rclcpp.hpp>
 #include <variant>
 
@@ -48,7 +50,7 @@ class DoNothingVisitor : public InputVisitor {
 
 class CountingVisitor : public InputVisitor {
  public:
-  unsigned int count = 0;
+  std::atomic<unsigned int> count = 0;
   void operator()(const TwistStamped& /*unused*/) override { count++; };
   void operator()(const JointJog& /*unused*/) override { count++; };
   ~CountingVisitor() override = default;
@@ -56,8 +58,8 @@ class CountingVisitor : public InputVisitor {
 
 class TypeCountingVisitor : public InputVisitor {
  public:
-  unsigned int twist_stamped_count = 0;
-  unsigned int joint_jog_count = 0;
+  std::atomic<unsigned int> twist_stamped_count = 0;
+  std::atomic<unsigned int> joint_jog_count = 0;
   void operator()(const TwistStamped& /*unused*/) override {
     twist_stamped_count++;
   };
@@ -66,13 +68,22 @@ class TypeCountingVisitor : public InputVisitor {
 };
 
 class ReceivedCommandVisitor : public InputVisitor {
+  mutable std::mutex mutex_;
+  InputCommand received_command_;
+
  public:
-  InputCommand received_command;
   void operator()(const TwistStamped& command) override {
-    received_command = command;
+    const std::lock_guard<std::mutex> lock(mutex_);
+    received_command_ = command;
   };
   void operator()(const JointJog& command) override {
-    received_command = command;
+    const std::lock_guard<std::mutex> lock(mutex_);
+    received_command_ = command;
   };
   ~ReceivedCommandVisitor() override = default;
+
+  InputCommand getReceivedCommand() const {
+    const std::lock_guard<std::mutex> lock(mutex_);
+    return received_command_;
+  }
 };
