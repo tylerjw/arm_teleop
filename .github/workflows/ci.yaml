@@ -19,8 +19,7 @@ jobs:
           - NAME: "rolling-testing-ccov"
             ROS_REPO: testing
             TARGET_CMAKE_ARGS: -DENABLE_COVERAGE=ON
-            # TODO(tylerjw): Enable code coverage reporting once tests exist
-            # CCOV: true
+            CCOV: true
           - NAME: "rolling-main-clang"
             ROS_REPO: main
             ADDITIONAL_DEBS: clang
@@ -32,15 +31,16 @@ jobs:
               -DENABLE_SANITIZER_ADDRESS=ON
               -DENABLE_SANITIZER_LEAK=ON
               -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
-          - NAME: "thread-sanitizer"
-            TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_THREAD=ON
+          # TODO(tylerjw): Enable thread sanitizer by excluding ROS
+          # - NAME: "thread-sanitizer"
+          #   TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_THREAD=ON
           - NAME: "memory-sanitizer"
             TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_MEMORY=ON
           - NAME: "static-analyzers"
             TARGET_CMAKE_ARGS: >
               -DENABLE_CLANG_TIDY=ON
               -DENABLE_INCLUDE_WHAT_YOU_USE=ON
-            ADDITIONAL_DEBS: clang-tidy iwyu
+            ADDITIONAL_DEBS: clang-tidy iwyu clang-9
 
     env:
       ROS_DISTRO: rolling
@@ -84,7 +84,7 @@ jobs:
         uses: rhaschke/lcov-action@main
         if: matrix.env.CCOV && steps.ici.outputs.target_test_results == '0'
         with:
-          docker: $DOCKER_IMAGE
+          docker: ros:rolling-ros-base-focal
           workdir: ${{ env.BASEDIR }}/target_ws
           ignore: '"*/target_ws/build/*" "*/target_ws/install/*" "*/test/*"'
       - name: Upload codecov report

@@ -26,8 +26,42 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#include "arm_teleop/arm_teleop.hpp"  // IWYU pragma: keep
+#pragma once
 
-#include <arm_teleop/detail/input_check_valid.hpp>  // IWYU pragma: keep
+#include <assert.h>
 
-namespace arm_teleop {}  // namespace arm_teleop
+#include <arm_teleop/detail/input_command.hpp>
+#include <arm_teleop/detail/logger.hpp>
+#include <control_msgs/msg/detail/joint_jog__struct.hpp>
+#include <geometry_msgs/msg/detail/twist_stamped__struct.hpp>
+#include <memory>
+#include <rclcpp/node.hpp>
+#include <string>
+#include <string_view>
+
+namespace arm_teleop::detail {
+/**
+ * @brief      Visitor that checks if the input is valid, only calling next if
+ * that is true
+ */
+class InputCheckValid : public InputVisitor {
+  rclcpp::Node::SharedPtr node_ = nullptr;
+  std::string command_in_type_ = "unitless";
+  std::shared_ptr<InputVisitor> next_ = nullptr;
+  Logger logger_ = Logger("arm_teleop.input_check_valid");
+
+ public:
+  InputCheckValid(const rclcpp::Node::SharedPtr& node,
+                  std::string_view command_in_type,
+                  const std::shared_ptr<InputVisitor>& next)
+      : node_{node}, command_in_type_{command_in_type}, next_{next} {
+    assert(node_ != nullptr);
+    assert(next_ != nullptr);
+  }
+  ~InputCheckValid() override = default;
+
+  void operator()(const geometry_msgs::msg::TwistStamped& command) override;
+  void operator()(const control_msgs::msg::JointJog& command) override;
+};
+
+}  // namespace arm_teleop::detail

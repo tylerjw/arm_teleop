@@ -26,8 +26,29 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#include "arm_teleop/arm_teleop.hpp"  // IWYU pragma: keep
+#pragma once
 
-#include <arm_teleop/detail/input_check_valid.hpp>  // IWYU pragma: keep
+#include <control_msgs/msg/joint_jog.hpp>
+#include <geometry_msgs/msg/twist_stamped.hpp>
+#include <variant>
 
-namespace arm_teleop {}  // namespace arm_teleop
+namespace arm_teleop {
+namespace detail {
+/**
+ * InputCommand type used by all Visitor callables
+ */
+using InputCommand =
+    std::variant<geometry_msgs::msg::TwistStamped, control_msgs::msg::JointJog>;
+
+/**
+ * @brief Interface class for input visitors
+ */
+class InputVisitor {
+ public:
+  virtual void operator()(const geometry_msgs::msg::TwistStamped&) = 0;
+  virtual void operator()(const control_msgs::msg::JointJog&) = 0;
+  virtual ~InputVisitor() {}
+};
+
+}  // namespace detail
+}  // namespace arm_teleop

@@ -26,8 +26,57 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#include "arm_teleop/arm_teleop.hpp"  // IWYU pragma: keep
+#pragma once
 
-#include <arm_teleop/detail/input_check_valid.hpp>  // IWYU pragma: keep
+#include <rclcpp/rclcpp.hpp>
+#include <string>
 
-namespace arm_teleop {}  // namespace arm_teleop
+namespace arm_teleop::detail {
+/**
+ * @brief      Logger that calls rclcpp macros.
+ */
+class Logger {
+  rclcpp::Logger logger_ = rclcpp::get_logger("arm_teleop");
+
+ public:
+  Logger(const std::string& log_namespace)
+      : logger_{rclcpp::get_logger(log_namespace)} {}
+
+// These logging macros don't play nicely with this compiler warning
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
+
+  void fatal(const std::string& what) const {
+    // These are all NOLINT because clang-tidy doesn't like the c-code they
+    // exapnd into.
+    RCLCPP_FATAL(logger_, what.c_str());  // NOLINT
+  }
+
+  void error(const std::string& what) const {
+    // These are all NOLINT because clang-tidy doesn't like the c-code they
+    // exapnd into.
+    RCLCPP_ERROR(logger_, what.c_str());  // NOLINT
+  }
+
+  void warn(const std::string& what) const {
+    // These are all NOLINT because clang-tidy doesn't like the c-code they
+    // exapnd into.
+    RCLCPP_WARN(logger_, what.c_str());  // NOLINT
+  }
+
+  void info(const std::string& what) const {
+    // These are all NOLINT because clang-tidy doesn't like the c-code they
+    // exapnd into.
+    RCLCPP_INFO(logger_, what.c_str());  // NOLINT
+  }
+
+  void debug(const std::string& what) const {
+    // These are all NOLINT because clang-tidy doesn't like the c-code they
+    // exapnd into.
+    RCLCPP_DEBUG(logger_, what.c_str());  // NOLINT
+  }
+
+#pragma GCC diagnostic pop
+};
+
+}  // namespace arm_teleop::detail
