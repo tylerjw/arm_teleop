@@ -26,17 +26,23 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#include <gtest/gtest.h>
-
 #include <arm_teleop/detail/input_command.hpp>
 #include <arm_teleop/detail/input_stale_command.hpp>
-#include <control_msgs/msg/joint_jog.hpp>
-#include <geometry_msgs/msg/twist_stamped.hpp>
+#include <control_msgs/msg/detail/joint_jog__struct.hpp>
+#include <functional>
+#include <geometry_msgs/msg/detail/twist_stamped__struct.hpp>
 #include <iostream>
 #include <memory>
-#include <rclcpp/rclcpp.hpp>
+#include <rclcpp/duration.hpp>
+#include <rclcpp/node.hpp>
+#include <rclcpp/time.hpp>
+#include <rclcpp/utilities.hpp>
+#include <std_msgs/msg/detail/header__struct.hpp>
 #include <variant>
 
+#include "gtest/gtest-message.h"
+#include "gtest/gtest-test-part.h"
+#include "gtest/gtest_pred_impl.h"
 #include "input_visitors.hpp"
 
 namespace {

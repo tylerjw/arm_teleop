@@ -53,7 +53,7 @@ bool waitFor(const rclcpp::Node::SharedPtr& node,
              const std::function<bool()>& condition,
              const rclcpp::Duration& timeout,
              const rclcpp::Duration& poll_period =
-                 rclcpp::Duration::from_seconds(0.01F)) {
+                 rclcpp::Duration::from_seconds(0.01)) {
   auto start = node->now();
   do {
     if (condition()) {
@@ -93,7 +93,7 @@ TEST(InputReamplerTests, OneVisit)  // NOLINT
   std::visit(resampler, InputCommand{TwistStamped{}});
   ASSERT_TRUE(waitFor(
       node, [&]() { return visitor->count >= 1; },
-      rclcpp::Duration::from_seconds(10.F)))
+      rclcpp::Duration::from_seconds(10.)))
       << "Timeout waiting for message to be received by visitor";
 
   // THEN we expect the count to be one
@@ -111,7 +111,7 @@ TEST(InputReamplerTests, WaitForSomeOutput)  // NOLINT
   std::visit(resampler, InputCommand{TwistStamped{}});
   ASSERT_TRUE(waitFor(
       node, [&]() { return visitor->count >= 10; },
-      rclcpp::Duration::from_seconds(10.F)))
+      rclcpp::Duration::from_seconds(10.)))
       << "Timeout waiting for messages to be received by visitor";
 
   // THEN we expect the callable count to be called about 10
@@ -135,7 +135,7 @@ TEST(InputReamplerTests, ReceivedEqualsSent)  // NOLINT
       [&]() {
         return std::holds_alternative<JointJog>(visitor->getReceivedCommand());
       },
-      rclcpp::Duration::from_seconds(10.F)))
+      rclcpp::Duration::from_seconds(10.)))
       << "Timeout waiting for message to be received by visitor";
 
   // THEN we expect the received command to be the same as the sent message
