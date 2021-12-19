@@ -133,15 +133,13 @@ TEST(InputReamplerTests, ReceivedEqualsSent)  // NOLINT
   ASSERT_TRUE(waitFor(
       node,
       [&]() {
-        return std::holds_alternative<decltype(sent_msg)>(
-            visitor->getReceivedCommand());
+        return std::holds_alternative<JointJog>(visitor->getReceivedCommand());
       },
       rclcpp::Duration::from_seconds(10.F)))
       << "Timeout waiting for message to be received by visitor";
 
   // THEN we expect the received command to be the same as the sent message
-  ASSERT_TRUE(
-      std::holds_alternative<decltype(sent_msg)>(visitor->getReceivedCommand()))
+  ASSERT_TRUE(std::holds_alternative<JointJog>(visitor->getReceivedCommand()))
       << "Received command should be of the same type as sent message";
   ASSERT_NO_THROW(std::get<JointJog>(visitor->getReceivedCommand()))  // NOLINT
       << "Received command variant should be of type JointJog";

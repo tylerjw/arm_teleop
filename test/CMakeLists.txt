@@ -23,4 +23,14 @@ if(BUILD_TESTING)
     ${geometry_msgs_LIBRARIES}
     ${rclcpp_LIBRARIES}
   )
+
+  # Input check valid
+  ament_add_gtest(input_stale_command_tests input_stale_command_tests.cpp)
+  target_link_libraries(input_stale_command_tests
+    arm_teleop
+    project_options
+    ${control_msgs_LIBRARIES}
+    ${geometry_msgs_LIBRARIES}
+    ${rclcpp_LIBRARIES}
+  )
 endif()
