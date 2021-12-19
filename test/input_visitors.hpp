@@ -26,8 +26,53 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#include "arm_teleop/arm_teleop.hpp"  // IWYU pragma: keep
+#pragma once
 
-#include <arm_teleop/detail/input_check_valid.hpp>  // IWYU pragma: keep
+#include <arm_teleop/detail/input_command.hpp>
+#include <control_msgs/msg/joint_jog.hpp>
+#include <geometry_msgs/msg/twist_stamped.hpp>
+#include <rclcpp/rclcpp.hpp>
+#include <variant>
 
-namespace arm_teleop {}  // namespace arm_teleop
+using arm_teleop::detail::InputCommand;
+using arm_teleop::detail::InputVisitor;
+using control_msgs::msg::JointJog;
+using geometry_msgs::msg::TwistStamped;
+
+class DoNothingVisitor : public InputVisitor {
+ public:
+  void operator()(const TwistStamped& /*unused*/) override{};
+  void operator()(const JointJog& /*unused*/) override{};
+  ~DoNothingVisitor() override = default;
+};
+
+class CountingVisitor : public InputVisitor {
+ public:
+  unsigned int count = 0;
+  void operator()(const TwistStamped& /*unused*/) override { count++; };
+  void operator()(const JointJog& /*unused*/) override { count++; };
+  ~CountingVisitor() override = default;
+};
+
+class TypeCountingVisitor : public InputVisitor {
+ public:
+  unsigned int twist_stamped_count = 0;
+  unsigned int joint_jog_count = 0;
+  void operator()(const TwistStamped& /*unused*/) override {
+    twist_stamped_count++;
+  };
+  void operator()(const JointJog& /*unused*/) override { joint_jog_count++; };
+  ~TypeCountingVisitor() override = default;
+};
+
+class ReceivedCommandVisitor : public InputVisitor {
+ public:
+  InputCommand received_command;
+  void operator()(const TwistStamped& command) override {
+    received_command = command;
+  };
+  void operator()(const JointJog& command) override {
+    received_command = command;
+  };
+  ~ReceivedCommandVisitor() override = default;
+};

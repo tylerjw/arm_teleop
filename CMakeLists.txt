@@ -42,10 +42,12 @@ include(cmake/StaticAnalyzers.cmake)
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_ros REQUIRED)
+find_package(control_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+
 # find_package(moveit REQUIRED)
-# find_package(control_msgs REQUIRED)
 # find_package(control_toolbox REQUIRED)
-# find_package(geometry_msgs REQUIRED)
 # find_package(moveit_msgs REQUIRED)
 # find_package(moveit_core REQUIRED)
 # find_package(moveit_ros_planning_interface REQUIRED)
@@ -55,7 +57,10 @@ find_package(ament_cmake_ros REQUIRED)
 # find_package(tf2_eigen REQUIRED)
 # find_package(trajectory_msgs REQUIRED)
 
-add_library(arm_teleop src/arm_teleop.cpp)
+add_library(arm_teleop
+  src/arm_teleop.cpp
+  src/detail/input_check_valid.cpp
+)
 target_include_directories(arm_teleop PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
@@ -64,6 +69,9 @@ target_link_libraries(
   PRIVATE
     project_options
     project_warnings
+    ${control_msgs_LIBRARIES}
+    ${geometry_msgs_LIBRARIES}
+    ${rclcpp_LIBRARIES}
     # moveit_core::moveit_robot_state
 )
 
@@ -106,6 +114,8 @@ if(BUILD_TESTING)
   set(ament_cmake_flake8_FOUND TRUE) # Conflicts with black
   set(ament_cmake_uncrustify_FOUND TRUE) # Conflicts with clang-format
   ament_lint_auto_find_test_dependencies()
+
+  add_subdirectory(test)
 endif()
 
 ament_export_include_directories(
