@@ -55,7 +55,7 @@ TEST(InputSubscriberTests, NoPublish)  // NOLINT
 {
   // GIVEN a InputSubscriber with with a Visitor that counts calls
   auto visitor = std::make_shared<CountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_0");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto input_subscriber = InputSubscriber(node, "a", "b", visitor);
 
   // WHEN we spin (without ever publishing a message to either topic)
@@ -70,7 +70,7 @@ TEST(InputSubscriberTests, TwistStampedVisit)  // NOLINT
   // GIVEN a InputSubscriber with with a Visitor that counts calls to each type
   // of topic
   auto visitor = std::make_shared<TypeCountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_1");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto input_subscriber =
       InputSubscriber(node, "twist_stamped_topic", "joint_jog_topic", visitor);
   auto pub = node->create_publisher<TwistStamped>("twist_stamped_topic",
@@ -93,7 +93,7 @@ TEST(InputSubscriberTests, JointJogVisit)  // NOLINT
   // GIVEN a InputSubscriber with with a Visitor that counts calls to each type
   // of topic
   auto visitor = std::make_shared<TypeCountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_2");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto input_subscriber =
       InputSubscriber(node, "twist_stamped_topic", "joint_jog_topic", visitor);
   auto pub = node->create_publisher<JointJog>("joint_jog_topic",
@@ -116,7 +116,7 @@ TEST(InputSubscriberTests, ReceivedEqualsSent)  // NOLINT
   // GIVEN a InputSubscriber with with a Visitor that copies the received
   // message into a local variant
   auto visitor = std::make_shared<ReceivedCommandVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_3");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto input_subscriber =
       InputSubscriber(node, "twist_stamped_topic", "joint_jog_topic", visitor);
   auto pub = node->create_publisher<JointJog>("joint_jog_topic",
