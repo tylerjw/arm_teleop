@@ -1,8 +1,10 @@
 <map id="test/input_visitors.hpp" name="test/input_visitors.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="233,5,400,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="359,5,525,32"/>
 <area shape="rect" id="node2" href="$input__command_8hpp.html" title=" " alt="" coords="229,80,404,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,180,211"/>
 <area shape="rect" id="node4" title=" " alt="" coords="205,169,399,211"/>
 <area shape="rect" id="node5" title=" " alt="" coords="424,177,492,203"/>
-<area shape="rect" id="node6" title=" " alt="" coords="480,87,612,114"/>
+<area shape="rect" id="node6" title=" " alt="" coords="479,87,546,114"/>
+<area shape="rect" id="node7" title=" " alt="" coords="570,87,634,114"/>
+<area shape="rect" id="node8" title=" " alt="" coords="659,87,791,114"/>
 </map>

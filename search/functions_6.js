@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_78',['main',['../arm__teleop__node_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;arm_teleop_node.cpp'],['../input__check__valid__tests_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;input_check_valid_tests.cpp']]]
+  ['logger_96',['Logger',['../classarm__teleop_1_1detail_1_1Logger.html#a263edaa4e90b3424b6e9ee10aa3a9a2c',1,'arm_teleop::detail::Logger']]]
 ];

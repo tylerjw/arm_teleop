@@ -72,8 +72,10 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="input__command_8hpp_source.html">arm_teleop/detail/input_command.hpp</a>&gt;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;control_msgs/msg/joint_jog.hpp&gt;</code><br />
 <code>#include &lt;geometry_msgs/msg/twist_stamped.hpp&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
 <code>#include &lt;rclcpp/rclcpp.hpp&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -81,12 +83,14 @@ Include dependency graph for input_visitors.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="input__visitors_8hpp__incl.png" border="0" usemap="#test_2input__visitors_8hpp" alt=""/></div>
 <map name="test_2input__visitors_8hpp" id="test_2input__visitors_8hpp">
-<area shape="rect" title=" " alt="" coords="233,5,400,32"/>
+<area shape="rect" title=" " alt="" coords="359,5,525,32"/>
 <area shape="rect" href="input__command_8hpp.html" title=" " alt="" coords="229,80,404,121"/>
 <area shape="rect" title=" " alt="" coords="5,169,180,211"/>
 <area shape="rect" title=" " alt="" coords="205,169,399,211"/>
 <area shape="rect" title=" " alt="" coords="424,177,492,203"/>
-<area shape="rect" title=" " alt="" coords="480,87,612,114"/>
+<area shape="rect" title=" " alt="" coords="479,87,546,114"/>
+<area shape="rect" title=" " alt="" coords="570,87,634,114"/>
+<area shape="rect" title=" " alt="" coords="659,87,791,114"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -94,8 +98,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="input__visitors_8hpp__dep__incl.png" border="0" usemap="#test_2input__visitors_8hppdep" alt=""/></div>
 <map name="test_2input__visitors_8hppdep" id="test_2input__visitors_8hppdep">
-<area shape="rect" title=" " alt="" coords="6,5,173,32"/>
+<area shape="rect" title=" " alt="" coords="193,5,359,32"/>
 <area shape="rect" href="input__check__valid__tests_8cpp.html" title=" " alt="" coords="5,80,173,121"/>
+<area shape="rect" href="input__resampler__tests_8cpp.html" title=" " alt="" coords="197,80,355,121"/>
+<area shape="rect" href="input__stale__command__tests_8cpp.html" title=" " alt="" coords="379,80,573,121"/>
 </map>
 </div>
 </div>

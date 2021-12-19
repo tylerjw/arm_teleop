@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warn_81',['warn',['../classarm__teleop_1_1detail_1_1Logger.html#a8e5dd117dfeebd39c016799866e8189f',1,'arm_teleop::detail::Logger']]]
+  ['stalecommandhalt_99',['StaleCommandHalt',['../classarm__teleop_1_1detail_1_1StaleCommandHalt.html#a22f813071632d83b382d0765d0f27520',1,'arm_teleop::detail::StaleCommandHalt']]]
 ];

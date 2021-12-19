@@ -82,12 +82,15 @@ Inheritance diagram for arm_teleop::detail::InputVisitor:</div>
 <div class="dyncontent">
 <div class="center"><img src="classarm__teleop_1_1detail_1_1InputVisitor__inherit__graph.png" border="0" usemap="#arm__teleop_1_1detail_1_1InputVisitor_inherit__map" alt="Inheritance graph"/></div>
 <map name="arm__teleop_1_1detail_1_1InputVisitor_inherit__map" id="arm__teleop_1_1detail_1_1InputVisitor_inherit__map">
-<area shape="rect" title="Interface class for input visitors." alt="" coords="5,115,147,156"/>
+<area shape="rect" title="Interface class for input visitors." alt="" coords="5,231,147,272"/>
 <area shape="rect" href="classarm__teleop_1_1detail_1_1InputCheckValid.html" title="Visitor that checks if the input is valid, only calling next if that is true." alt="" coords="219,5,361,47"/>
-<area shape="rect" href="classCountingVisitor.html" title=" " alt="" coords="229,71,351,98"/>
-<area shape="rect" href="classDoNothingVisitor.html" title=" " alt="" coords="223,122,357,149"/>
-<area shape="rect" href="classReceivedCommandVisitor.html" title=" " alt="" coords="195,173,385,199"/>
-<area shape="rect" href="classTypeCountingVisitor.html" title=" " alt="" coords="214,223,366,250"/>
+<area shape="rect" href="classarm__teleop_1_1detail_1_1InputResampler.html" title="Visitor that stores the the input command and then calls the next visitor at a specified rate." alt="" coords="219,71,361,112"/>
+<area shape="rect" href="classarm__teleop_1_1detail_1_1StaleCommandHalt.html" title="Visitor that if the message is stale it calls halt, otherwise it calls the next visitor." alt="" coords="211,136,369,177"/>
+<area shape="rect" href="classarm__teleop_1_1detail_1_1TimestampNow.html" title="Visitor that sets the header.stamp to now and then calls the next visitor." alt="" coords="219,201,361,243"/>
+<area shape="rect" href="classCountingVisitor.html" title=" " alt="" coords="229,267,351,294"/>
+<area shape="rect" href="classDoNothingVisitor.html" title=" " alt="" coords="223,318,357,345"/>
+<area shape="rect" href="classReceivedCommandVisitor.html" title=" " alt="" coords="195,369,385,395"/>
+<area shape="rect" href="classTypeCountingVisitor.html" title=" " alt="" coords="214,419,366,446"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -153,7 +156,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValid.html#a23c1bbefe42da3c886d86b065ec407f0">arm_teleop::detail::InputCheckValid</a>.</p>
+<p>Implemented in <a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#ad07475e11869941bc20df7ee59b84981">arm_teleop::detail::InputResampler</a>, <a class="el" href="classarm__teleop_1_1detail_1_1StaleCommandHalt.html#ab681caebd08aec444d3c047b2ee3ce87">arm_teleop::detail::StaleCommandHalt</a>, <a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValid.html#a23c1bbefe42da3c886d86b065ec407f0">arm_teleop::detail::InputCheckValid</a>, and <a class="el" href="classarm__teleop_1_1detail_1_1TimestampNow.html#ad76b1c96e4a77d0c50e0487c41faac59">arm_teleop::detail::TimestampNow</a>.</p>
 
 </div>
 </div>
@@ -181,7 +184,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValid.html#ac484b463adeda74686ef5d8e90f2f9ef">arm_teleop::detail::InputCheckValid</a>.</p>
+<p>Implemented in <a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#af40c880742f6c365548e6fe1edec5865">arm_teleop::detail::InputResampler</a>, <a class="el" href="classarm__teleop_1_1detail_1_1StaleCommandHalt.html#aacb7d554cc3972cefa249383fcb0c8dc">arm_teleop::detail::StaleCommandHalt</a>, <a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValid.html#ac484b463adeda74686ef5d8e90f2f9ef">arm_teleop::detail::InputCheckValid</a>, and <a class="el" href="classarm__teleop_1_1detail_1_1TimestampNow.html#adc2e3a1e4da531d6224f431920aabf88">arm_teleop::detail::TimestampNow</a>.</p>
 
 </div>
 </div>

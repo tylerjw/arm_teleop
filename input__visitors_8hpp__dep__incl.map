@@ -1,4 +1,6 @@
 <map id="test/input_visitors.hpp" name="test/input_visitors.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="6,5,173,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="193,5,359,32"/>
 <area shape="rect" id="node2" href="$input__check__valid__tests_8cpp.html" title=" " alt="" coords="5,80,173,121"/>
+<area shape="rect" id="node3" href="$input__resampler__tests_8cpp.html" title=" " alt="" coords="197,80,355,121"/>
+<area shape="rect" id="node4" href="$input__stale__command__tests_8cpp.html" title=" " alt="" coords="379,80,573,121"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['typecountingvisitor_56',['TypeCountingVisitor',['../classTypeCountingVisitor.html',1,'']]]
+  ['stalecommandhalt_67',['StaleCommandHalt',['../classarm__teleop_1_1detail_1_1StaleCommandHalt.html',1,'arm_teleop::detail']]]
 ];
