@@ -1,4 +1,5 @@
 <map id="arm_teleop::detail::Logger::warn" name="arm_teleop::detail::Logger::warn">
-<area shape="rect" id="node1" title=" " alt="" coords="261,5,403,47"/>
-<area shape="rect" id="node2" href="$classarm__teleop_1_1detail_1_1InputCheckValid.html#ac484b463adeda74686ef5d8e90f2f9ef" title=" " alt="" coords="5,5,213,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="263,53,404,94"/>
+<area shape="rect" id="node2" href="$classarm__teleop_1_1detail_1_1InputCheckValidScaled.html#a8961ca2d4c2aa88b86c5ff232882d7a9" title=" " alt="" coords="21,5,199,61"/>
+<area shape="rect" id="node3" href="$classarm__teleop_1_1detail_1_1InputCheckValidSpeedUnits.html#adb0b603d540b9cd224807e55fdaee6de" title=" " alt="" coords="5,85,215,141"/>
 </map>

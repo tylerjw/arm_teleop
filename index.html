@@ -68,7 +68,29 @@ $(function() {
 <div class="textblock"><p><a href="https://github.com/tylerjw/arm_teleop/actions/workflows/format.yaml?query=branch%3Amain"><object type="image/svg+xml" data="https://github.com/tylerjw/arm_teleop/actions/workflows/format.yaml/badge.svg?branch=main" style="pointer-events: none;">Formatting (pre-commit)</object></a> <a href="https://github.com/tylerjw/arm_teleop/actions/workflows/ci.yaml?query=branch%3Amain"><object type="image/svg+xml" data="https://github.com/tylerjw/arm_teleop/actions/workflows/ci.yaml/badge.svg?branch=main" style="pointer-events: none;">CI</object></a> <a href="https://github.com/tylerjw/arm_teleop/actions/workflows/prerelease.yaml?query=branch%3Amain"><object type="image/svg+xml" data="https://github.com/tylerjw/arm_teleop/actions/workflows/prerelease.yaml/badge.svg?branch=main" style="pointer-events: none;">Pre-release</object></a> <a href="https://github.com/tylerjw/arm_teleop/actions/workflows/doxygen.yaml?query=branch%3Amain"><object type="image/svg+xml" data="https://github.com/tylerjw/arm_teleop/actions/workflows/doxygen.yaml/badge.svg?branch=main" style="pointer-events: none;">Doxygen</object></a> <a href="https://codecov.io/gh/tylerjw/arm_teleop"><object type="image/svg+xml" data="https://codecov.io/gh/tylerjw/arm_teleop/branch/main/graph/badge.svg?token=W7uHKcY0ly" style="pointer-events: none;">Code Coverage</object></a></p>
 <p>ROS 2 package for Teleoperation of a Robot Arm</p>
 <p><a href="https://tylerjw.github.io/arm_teleop/">API Documentation</a></p>
-<h2><a class="anchor" id="autotoc_md1"></a>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Building with sanitizers and linters locally</h1>
+<p>Here are the sanitizer and linter builds done in CI:</p>
+<div class="fragment"><div class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \</div>
+<div class="line">                          -DENABLE_SANITIZER_ADDRESS=ON \</div>
+<div class="line">                          -DENABLE_SANITIZER_LEAK=ON \</div>
+<div class="line">                          -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON</div>
+</div><!-- fragment --><div class="fragment"><div class="line">CXX=clang++ \</div>
+<div class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \</div>
+<div class="line">                          -DENABLE_SANITIZER_THREAD=ON</div>
+</div><!-- fragment --><div class="fragment"><div class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \</div>
+<div class="line">                          -DENABLE_SANITIZER_MEMORY=ON</div>
+</div><!-- fragment --><div class="fragment"><div class="line">colcon build --cmake-args -DENABLE_INCLUDE_WHAT_YOU_USE=ON \</div>
+<div class="line">                          -DENABLE_CLANG_TIDY=ON \</div>
+<div class="line">             --event-handlers console_direct+</div>
+</div><!-- fragment --><p>Run tests with console output: </p><div class="fragment"><div class="line">colcon test --event-handlers console_direct+</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Building doxygen site locally</h1>
+<p>Build: </p><div class="fragment"><div class="line">colcon build --cmake-args -DENABLE_DOXYGEN=ON \</div>
+<div class="line">             --cmake-target doxygen-docs \</div>
+<div class="line">             --event-handlers console_direct+</div>
+</div><!-- fragment --><p>Open in browser: </p><div class="fragment"><div class="line">open build/arm_teleop/html/index.html</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 Achnologements</h2>
 <ul>
 <li>Inspired by <a href="https://github.com/ros-planning/moveit2/tree/main/moveit_ros/moveit_servo">moveit_servo</a></li>

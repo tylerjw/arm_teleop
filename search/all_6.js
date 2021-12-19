@@ -12,9 +12,10 @@ var searchData=
   ['input_5fsubscriber_2ehpp_30',['input_subscriber.hpp',['../input__subscriber_8hpp.html',1,'']]],
   ['input_5fsubscriber_5ftests_2ecpp_31',['input_subscriber_tests.cpp',['../input__subscriber__tests_8cpp.html',1,'']]],
   ['input_5fvisitors_2ehpp_32',['input_visitors.hpp',['../input__visitors_8hpp.html',1,'']]],
-  ['inputcheckvalid_33',['InputCheckValid',['../classarm__teleop_1_1detail_1_1InputCheckValid.html',1,'arm_teleop::detail::InputCheckValid'],['../classarm__teleop_1_1detail_1_1InputCheckValid.html#a40d5b47030b19c8b5303062ec04df019',1,'arm_teleop::detail::InputCheckValid::InputCheckValid()']]],
-  ['inputcommand_34',['InputCommand',['../namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db',1,'arm_teleop::detail']]],
-  ['inputresampler_35',['InputResampler',['../classarm__teleop_1_1detail_1_1InputResampler.html',1,'arm_teleop::detail::InputResampler'],['../classarm__teleop_1_1detail_1_1InputResampler.html#a50b5b7171636986f912fe6a7938bfefa',1,'arm_teleop::detail::InputResampler::InputResampler()']]],
-  ['inputsubscriber_36',['InputSubscriber',['../classarm__teleop_1_1detail_1_1InputSubscriber.html',1,'arm_teleop::detail::InputSubscriber'],['../classarm__teleop_1_1detail_1_1InputSubscriber.html#a77493ed7c44155fbff1238f40aac383e',1,'arm_teleop::detail::InputSubscriber::InputSubscriber()']]],
-  ['inputvisitor_37',['InputVisitor',['../classarm__teleop_1_1detail_1_1InputVisitor.html',1,'arm_teleop::detail']]]
+  ['inputcheckvalidscaled_33',['InputCheckValidScaled',['../classarm__teleop_1_1detail_1_1InputCheckValidScaled.html',1,'arm_teleop::detail::InputCheckValidScaled'],['../classarm__teleop_1_1detail_1_1InputCheckValidScaled.html#a7121e146c3b2c159743a263cdc4b4569',1,'arm_teleop::detail::InputCheckValidScaled::InputCheckValidScaled()']]],
+  ['inputcheckvalidspeedunits_34',['InputCheckValidSpeedUnits',['../classarm__teleop_1_1detail_1_1InputCheckValidSpeedUnits.html',1,'arm_teleop::detail::InputCheckValidSpeedUnits'],['../classarm__teleop_1_1detail_1_1InputCheckValidSpeedUnits.html#a0ab5ec2aed046f177071bdec2ac20b25',1,'arm_teleop::detail::InputCheckValidSpeedUnits::InputCheckValidSpeedUnits()']]],
+  ['inputcommand_35',['InputCommand',['../namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db',1,'arm_teleop::detail']]],
+  ['inputresampler_36',['InputResampler',['../classarm__teleop_1_1detail_1_1InputResampler.html',1,'arm_teleop::detail::InputResampler'],['../classarm__teleop_1_1detail_1_1InputResampler.html#a50b5b7171636986f912fe6a7938bfefa',1,'arm_teleop::detail::InputResampler::InputResampler()']]],
+  ['inputsubscriber_37',['InputSubscriber',['../classarm__teleop_1_1detail_1_1InputSubscriber.html',1,'arm_teleop::detail::InputSubscriber'],['../classarm__teleop_1_1detail_1_1InputSubscriber.html#a77493ed7c44155fbff1238f40aac383e',1,'arm_teleop::detail::InputSubscriber::InputSubscriber()']]],
+  ['inputvisitor_38',['InputVisitor',['../classarm__teleop_1_1detail_1_1InputVisitor.html',1,'arm_teleop::detail']]]
 ];
