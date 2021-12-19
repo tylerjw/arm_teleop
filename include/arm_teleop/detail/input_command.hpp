@@ -32,8 +32,7 @@
 #include <geometry_msgs/msg/twist_stamped.hpp>
 #include <variant>
 
-namespace arm_teleop {
-namespace detail {
+namespace arm_teleop::detail {
 /**
  * InputCommand type used by all Visitor callables
  */
@@ -50,5 +49,4 @@ class InputVisitor {
   virtual ~InputVisitor() {}
 };
 
-}  // namespace detail
-}  // namespace arm_teleop
+}  // namespace arm_teleop::detail

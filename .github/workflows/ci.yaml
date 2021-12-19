@@ -24,16 +24,21 @@ jobs:
             ROS_REPO: main
           - NAME: "address-leak-ub-sanitizers"
             TARGET_CMAKE_ARGS: >
+              -DCMAKE_BUILD_TYPE=Debug
               -DENABLE_SANITIZER_ADDRESS=ON
               -DENABLE_SANITIZER_LEAK=ON
               -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
           - NAME: "thread-sanitizer-clang"
-            TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_THREAD=ON
+            TARGET_CMAKE_ARGS: >
+              -DCMAKE_BUILD_TYPE=Debug
+              -DENABLE_SANITIZER_THREAD=ON
             ADDITIONAL_DEBS: clang
             CC: clang
             CXX: clang++
           - NAME: "memory-sanitizer"
-            TARGET_CMAKE_ARGS: -DENABLE_SANITIZER_MEMORY=ON
+            TARGET_CMAKE_ARGS: >
+              -DCMAKE_BUILD_TYPE=Debug
+              -DENABLE_SANITIZER_MEMORY=ON
           - NAME: "static-analyzers"
             TARGET_CMAKE_ARGS: >
               -DENABLE_CLANG_TIDY=ON
@@ -58,7 +63,7 @@ jobs:
         uses: pat-s/always-upload-cache@v2.1.5
         with:
           path: ${{ env.BASEDIR }}/target_ws
-          key: ${{ env.CACHE_PREFIX }}-${{ github.run_id }}
+          key: ${{ matrix.env.NAME }}-${{ github.run_id }}
           restore-keys: target_ws-${{ matrix.env.NAME }}-${{ hashFiles('**/CMakeLists.txt', '**/package.xml', '.github/workflows/ci.yaml') }}
       - name: Cache ccache
         uses: pat-s/always-upload-cache@v2.1.5
