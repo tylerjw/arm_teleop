@@ -60,6 +60,7 @@ function(enable_sanitizers project_name)
         message(WARNING "Thread sanitizer does not work with Address and Leak sanitizer enabled")
       else()
         list(APPEND SANITIZERS "thread")
+        target_compile_options(${project_name} INTERFACE -fsanitize-blacklist=${PROJECT_SOURCE_DIR}/.tsan-blacklist)
       endif()
     endif()
 
