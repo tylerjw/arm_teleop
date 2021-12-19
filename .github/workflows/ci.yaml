@@ -32,9 +32,9 @@ jobs:
             TARGET_CMAKE_ARGS: >
               -DCMAKE_BUILD_TYPE=Debug
               -DENABLE_SANITIZER_THREAD=ON
-            ADDITIONAL_DEBS: clang
-            CC: clang
-            CXX: clang++
+            ADDITIONAL_DEBS: clang-10
+            CC: clang-10
+            CXX: clang++-10
           - NAME: "memory-sanitizer"
             TARGET_CMAKE_ARGS: >
               -DCMAKE_BUILD_TYPE=Debug
