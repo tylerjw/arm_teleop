@@ -63,8 +63,10 @@ jobs:
         uses: pat-s/always-upload-cache@v2.1.5
         with:
           path: ${{ env.BASEDIR }}/target_ws
-          key: ${{ matrix.env.NAME }}-${{ github.run_id }}
-          restore-keys: target_ws-${{ matrix.env.NAME }}-${{ hashFiles('**/CMakeLists.txt', '**/package.xml', '.github/workflows/ci.yaml') }}
+          key: ${{ env.CACHE_PREFIX }}-${{ github.run_id }}
+          restore-keys: ${{ env.CACHE_PREFIX }}
+        env:
+          CACHE_PREFIX: target_ws-${{ matrix.env.NAME }}-${{ hashFiles('**/CMakeLists.txt', '**/package.xml', '.github/workflows/ci.yaml') }}
       - name: Cache ccache
         uses: pat-s/always-upload-cache@v2.1.5
         with:

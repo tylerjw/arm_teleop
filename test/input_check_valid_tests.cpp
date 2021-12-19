@@ -120,7 +120,7 @@ TEST(InputCheckValidTests, NanTwistStamp)  // NOLINT
 
   // WHEN we visit with a TwistStamped containing a NaN
   auto command = TwistStamped{};
-  command.twist.angular.z = NAN;
+  command.twist.angular.z = static_cast<double>(NAN);
   std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
@@ -136,7 +136,7 @@ TEST(InputCheckValidTests, NanJointJog)  // NOLINT
 
   // WHEN we visit with a JointJog containing a NaN
   auto command = JointJog{};
-  command.velocities.push_back(NAN);
+  command.velocities.push_back(static_cast<double>(NAN));
   std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
