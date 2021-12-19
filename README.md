@@ -9,6 +9,53 @@ ROS 2 package for Teleoperation of a Robot Arm
 
 [API Documentation](https://tylerjw.github.io/arm_teleop/)
 
+## Building with sanitizers and linters locally
+
+Here are the sanitizer and linter builds done in CI:
+
+```bash
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \
+                          -DENABLE_SANITIZER_ADDRESS=ON \
+                          -DENABLE_SANITIZER_LEAK=ON \
+                          -DENABLE_SANITIZER_UNDEFINED_BEHAVIOR=ON
+```
+
+```bash
+CXX=clang++ \
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \
+                          -DENABLE_SANITIZER_THREAD=ON
+```
+
+```bash
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \
+                          -DENABLE_SANITIZER_MEMORY=ON
+```
+
+```bash
+colcon build --cmake-args -DENABLE_INCLUDE_WHAT_YOU_USE=ON \
+                          -DENABLE_CLANG_TIDY=ON \
+             --event-handlers console_direct+
+```
+
+Run tests with console output:
+```bash
+colcon test --event-handlers console_direct+
+```
+
+## Building doxygen site locally
+
+Build:
+```bash
+colcon build --cmake-args -DENABLE_DOXYGEN=ON \
+             --cmake-target doxygen-docs \
+             --event-handlers console_direct+
+```
+
+Open in browser:
+```bash
+open build/arm_teleop/html/index.html
+```
+
 ### Achnologements
 
 - Inspired by [moveit_servo](https://github.com/ros-planning/moveit2/tree/main/moveit_ros/moveit_servo)

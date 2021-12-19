@@ -58,7 +58,7 @@ TEST(InputStaleCommandTests, TimeStampIsNearNowJointJog)  // NOLINT
   // GIVEN a TimestampNow with with a Visitor that saves modified message
   // locally
   auto visitor = std::make_shared<ReceivedCommandVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_0");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto timestamp_now = TimestampNow(node, visitor);
 
   // WHEN we visit the timestamp_now with one message
@@ -82,7 +82,7 @@ TEST(InputStaleCommandTests, TimeStampIsNearNowTwistStamped)  // NOLINT
   // GIVEN a TimestampNow with with a Visitor that saves modified message
   // locally
   auto visitor = std::make_shared<ReceivedCommandVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_1");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto timestamp_now = TimestampNow(node, visitor);
 
   // WHEN we visit the timestamp_now with one message
@@ -108,8 +108,8 @@ TEST(InputStaleCommandTests, HaltTwistStamped)  // NOLINT
   auto visitor = std::make_shared<CountingVisitor>();
   unsigned int halt_count{0};
   auto stale_command_halt = StaleCommandHalt(
-      std::make_shared<rclcpp::Node>("test_node_2"),
-      rclcpp::Duration::from_seconds(1), [&]() { halt_count++; }, visitor);
+      std::make_shared<rclcpp::Node>("_"), rclcpp::Duration::from_seconds(1),
+      [&]() { halt_count++; }, visitor);
 
   // WHEN we visit the stale_command_halt with one message that is default
   // constructed
@@ -128,8 +128,8 @@ TEST(InputStaleCommandTests, HaltJointJog)  // NOLINT
   auto visitor = std::make_shared<CountingVisitor>();
   unsigned int halt_count{0};
   auto stale_command_halt = StaleCommandHalt(
-      std::make_shared<rclcpp::Node>("test_node_3"),
-      rclcpp::Duration::from_seconds(1), [&]() { halt_count++; }, visitor);
+      std::make_shared<rclcpp::Node>("_"), rclcpp::Duration::from_seconds(1),
+      [&]() { halt_count++; }, visitor);
 
   // WHEN we visit the stale_command_halt with one message that is default
   // constructed
@@ -147,7 +147,7 @@ TEST(InputStaleCommandTests, NotStaleVisitTwistStamped)  // NOLINT
   // calls
   auto visitor = std::make_shared<CountingVisitor>();
   unsigned int halt_count{0};
-  auto node = std::make_shared<rclcpp::Node>("test_node_4");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto stale_command_halt = StaleCommandHalt(
       node, rclcpp::Duration::from_seconds(1), [&]() { halt_count++; },
       visitor);
@@ -169,7 +169,7 @@ TEST(InputStaleCommandTests, NotStaleVisitJointJog)  // NOLINT
   // calls
   auto visitor = std::make_shared<CountingVisitor>();
   unsigned int halt_count{0};
-  auto node = std::make_shared<rclcpp::Node>("test_node_5");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto stale_command_halt = StaleCommandHalt(
       node, rclcpp::Duration::from_seconds(1), [&]() { halt_count++; },
       visitor);

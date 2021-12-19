@@ -35,11 +35,13 @@ jobs:
             ADDITIONAL_DEBS: clang-10
             CC: clang-10
             CXX: clang++-10
+            BEFORE_RUN_TARGET_TEST_EMBED: export ASAN_SYMBOLIZER_PATH=$(which llvm-symbolizer-10)
           - NAME: "memory-sanitizer"
             TARGET_CMAKE_ARGS: >
               -DCMAKE_BUILD_TYPE=Debug
               -DENABLE_SANITIZER_MEMORY=ON
           - NAME: "static-analyzers"
+            # TODO(tylerjw): fail on iwyu warnings
             TARGET_CMAKE_ARGS: >
               -DENABLE_CLANG_TIDY=ON
               -DENABLE_INCLUDE_WHAT_YOU_USE=ON

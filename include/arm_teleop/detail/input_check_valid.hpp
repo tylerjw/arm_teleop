@@ -41,27 +41,58 @@
 
 namespace arm_teleop::detail {
 /**
- * @brief      Visitor that checks if the input is valid, only calling next if
- * that is true
+ * @brief      Validates that the input messages do not contain NAN and in the
+ * case of TwistStamped that it is within the range [-1,1].
  */
-class InputCheckValid : public InputVisitor {
+class InputCheckValidScaled : public InputVisitor {
   rclcpp::Node::SharedPtr node_ = nullptr;
-  std::string command_in_type_ = "unitless";
   std::shared_ptr<InputVisitor> next_ = nullptr;
-  Logger logger_ = Logger("arm_teleop.input_check_valid");
+  Logger logger_ = Logger("arm_teleop.input_check_valid_scaled");
 
  public:
-  InputCheckValid(const rclcpp::Node::SharedPtr& node,
-                  std::string_view command_in_type,
-                  const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, command_in_type_{command_in_type}, next_{next} {
+  InputCheckValidScaled(const rclcpp::Node::SharedPtr& node,
+                        const std::shared_ptr<InputVisitor>& next)
+      : node_{node}, next_{next} {
     assert(node_ != nullptr);
     assert(next_ != nullptr);
   }
-  ~InputCheckValid() override = default;
-
+  ~InputCheckValidScaled() override = default;
   void operator()(const geometry_msgs::msg::TwistStamped& command) override;
   void operator()(const control_msgs::msg::JointJog& command) override;
 };
+
+/**
+ * @brief      Validates that the input messages do not contain NAN.
+ */
+class InputCheckValidSpeedUnits : public InputVisitor {
+  rclcpp::Node::SharedPtr node_ = nullptr;
+  std::shared_ptr<InputVisitor> next_ = nullptr;
+  Logger logger_ = Logger("arm_teleop.input_check_valid_speed_units");
+
+ public:
+  InputCheckValidSpeedUnits(const rclcpp::Node::SharedPtr& node,
+                            const std::shared_ptr<InputVisitor>& next)
+      : node_{node}, next_{next} {
+    assert(node_ != nullptr);
+    assert(next_ != nullptr);
+  }
+  ~InputCheckValidSpeedUnits() override = default;
+  void operator()(const geometry_msgs::msg::TwistStamped& command) override;
+  void operator()(const control_msgs::msg::JointJog& command) override;
+};
+
+/**
+ * @brief      Makes an input check valid visitor.
+ *
+ * @param[in]  node             The node
+ * @param[in]  command_in_type  The command in type.  Valid values are `scaled`
+ * and `speed_units`.  Throws runtime_error if anyting else is passed in.
+ * @param[in]  next             The next
+ *
+ * @return     A shared_ptr<InputVisitor>.
+ */
+std::shared_ptr<InputVisitor> makeInputCheckValid(
+    const rclcpp::Node::SharedPtr& node, std::string_view command_in_type,
+    const std::shared_ptr<InputVisitor>& next);
 
 }  // namespace arm_teleop::detail
