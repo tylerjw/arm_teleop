@@ -38,6 +38,7 @@
 #include <rclcpp/time.hpp>
 #include <rclcpp/utilities.hpp>
 #include <std_msgs/msg/detail/header__struct.hpp>
+#include <stdexcept>
 #include <variant>
 
 #include "gtest/gtest-message.h"
@@ -52,6 +53,26 @@ const auto TIME_EPSILON = 1e-1;
 using arm_teleop::detail::InputCommand;
 using arm_teleop::detail::StaleCommandHalt;
 using arm_teleop::detail::TimestampNow;
+
+TEST(InputReamplerTests, NullNodeTimestampNow)  // NOLINT
+{
+  // GIVEN a valid visitor
+  // WHEN we construct TimestampNow with nullptr for node
+  // THEN we expect it to throw
+  auto visitor = std::make_shared<CountingVisitor>();
+  EXPECT_THROW(  // NOLINT
+      auto resampler = TimestampNow(nullptr, visitor), std::runtime_error);
+}
+
+TEST(InputReamplerTests, NullVisitorTimestampNow)  // NOLINT
+{
+  // GIVEN a valid node
+  // WHEN we construct TimestampNow with nullptr for visitor
+  // THEN we expect it to throw
+  auto node = std::make_shared<rclcpp::Node>("_");
+  EXPECT_THROW(  // NOLINT
+      auto resampler = TimestampNow(node, nullptr), std::runtime_error);
+}
 
 TEST(InputStaleCommandTests, TimeStampIsNearNowJointJog)  // NOLINT
 {
@@ -99,6 +120,30 @@ TEST(InputStaleCommandTests, TimeStampIsNearNowTwistStamped)  // NOLINT
   EXPECT_NEAR((node->now() - received_msg.header.stamp).seconds(), 0,
               TIME_EPSILON)
       << "Time difference between now and received_msg should be close to 0";
+}
+
+TEST(InputReamplerTests, NullNodeStaleCommandHalt)  // NOLINT
+{
+  // GIVEN a valid visitor
+  // WHEN we construct StaleCommandHalt with nullptr for node
+  // THEN we expect it to throw
+  auto visitor = std::make_shared<CountingVisitor>();
+  EXPECT_THROW(  // NOLINT
+      auto resampler = StaleCommandHalt(
+          nullptr, rclcpp::Duration::from_seconds(1), [&]() {}, visitor),
+      std::runtime_error);
+}
+
+TEST(InputReamplerTests, NullVisitorStaleCommandHalt)  // NOLINT
+{
+  // GIVEN a valid node
+  // WHEN we construct StaleCommandHalt with nullptr for visitor
+  // THEN we expect it to throw
+  auto node = std::make_shared<rclcpp::Node>("_");
+  EXPECT_THROW(  // NOLINT
+      auto resampler = StaleCommandHalt(
+          node, rclcpp::Duration::from_seconds(1), [&]() {}, nullptr),
+      std::runtime_error);
 }
 
 TEST(InputStaleCommandTests, HaltTwistStamped)  // NOLINT

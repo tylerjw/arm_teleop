@@ -34,29 +34,39 @@
 #include <geometry_msgs/msg/detail/vector3__struct.hpp>
 #include <iostream>
 #include <memory>
-#include <rclcpp/node.hpp>
 #include <rclcpp/utilities.hpp>
 #include <stdexcept>
+#include <string_view>
 #include <variant>
 #include <vector>
 
-#include "arm_teleop/detail/input_check_valid.hpp"
+#include "arm_teleop/detail/input_validate.hpp"
 #include "gtest/gtest-message.h"
 #include "gtest/gtest-test-part.h"
 #include "gtest/gtest_pred_impl.h"
 #include "input_visitors.hpp"
 
 using arm_teleop::detail::InputCommand;
+using arm_teleop::detail::InputValidate;
 
 TEST(InputCheckValidTests, InvalidInputType)  // NOLINT
 {
-  // GIVEN the makeInputCheckValid function
-  // WHEN we call makeInputCheckValid with an invalid string value
+  // GIVEN the InputValidate constructor
+  // WHEN we call InputValidate with an invalid string value
   // THEN we expect it to throw
   EXPECT_THROW(  // NOLINT
       auto input_check_valid =
-          makeInputCheckValid(std::make_shared<rclcpp::Node>("_"), "invalid",
-                              std::make_shared<DoNothingVisitor>()),
+          InputValidate("invalid", std::make_shared<DoNothingVisitor>()),
+      std::runtime_error);
+}
+
+TEST(InputCheckValidTests, NullptrVisitor)  // NOLINT
+{
+  // GIVEN the InputValidate constructor
+  // WHEN we call InputValidate with a nullptr for visitor
+  // THEN we expect it to throw
+  EXPECT_THROW(  // NOLINT
+      auto input_check_valid = InputValidate("scaled", nullptr),
       std::runtime_error);
 }
 
@@ -64,11 +74,10 @@ TEST(InputCheckValidTests, DefaultTwistStampScaled)  // NOLINT
 {
   // GIVEN a InputCheckValidScaled with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "scaled", visitor);
+  auto input_check_valid = InputValidate("scaled", visitor);
 
   // WHEN we visit with a default constructed TwistStamped
-  std::visit(*input_check_valid, InputCommand{TwistStamped{}});
+  std::visit(input_check_valid, InputCommand{TwistStamped{}});
 
   // THEN we expect the visitor to have been called
   ASSERT_EQ(visitor->count, 1U) << "The visitor should have been called.";
@@ -78,11 +87,10 @@ TEST(InputCheckValidTests, DefaultJointJogScaled)  // NOLINT
 {
   // GIVEN a InputCheckValidScaled with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "scaled", visitor);
+  auto input_check_valid = InputValidate("scaled", visitor);
 
   // WHEN we visit with a default constructed JointJog
-  std::visit(*input_check_valid, InputCommand{JointJog{}});
+  std::visit(input_check_valid, InputCommand{JointJog{}});
 
   // THEN we expect the visitor to have been called
   ASSERT_EQ(visitor->count, 1U) << "The visitor should have been called.";
@@ -92,11 +100,10 @@ TEST(InputCheckValidTests, DefaultTwistStampSpeedUnits)  // NOLINT
 {
   // GIVEN a InputCheckValidSpeedUnits with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "speed_units", visitor);
+  auto input_check_valid = InputValidate("speed_units", visitor);
 
   // WHEN we visit with a default constructed TwistStamped
-  std::visit(*input_check_valid, InputCommand{TwistStamped{}});
+  std::visit(input_check_valid, InputCommand{TwistStamped{}});
 
   // THEN we expect the visitor to have been called
   ASSERT_EQ(visitor->count, 1U) << "The visitor should have been called.";
@@ -106,11 +113,10 @@ TEST(InputCheckValidTests, DefaultJointJogSpeedUnits)  // NOLINT
 {
   // GIVEN a InputCheckValidSpeedUnits with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "speed_units", visitor);
+  auto input_check_valid = InputValidate("speed_units", visitor);
 
   // WHEN we visit with a default constructed JointJog
-  std::visit(*input_check_valid, InputCommand{JointJog{}});
+  std::visit(input_check_valid, InputCommand{JointJog{}});
 
   // THEN we expect the visitor to have been called
   ASSERT_EQ(visitor->count, 1U) << "The visitor should have been called.";
@@ -120,14 +126,13 @@ TEST(InputCheckValidTests, InvalidScaledTwistStamp)  // NOLINT
 {
   // GIVEN a InputCheckValid with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "scaled", visitor);
+  auto input_check_valid = InputValidate("scaled", visitor);
 
   // WHEN we visit with a TwistStamped that is invlid in "scaled" mode
   auto command = TwistStamped{};
   const auto kVelocity = 10.0;
   command.twist.angular.z = kVelocity;
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
   ASSERT_EQ(visitor->count, 0U) << "The visitor should NOT have been called.";
@@ -137,14 +142,13 @@ TEST(InputCheckValidTests, ValidSpeedUnitsTwistStamp)  // NOLINT
 {
   // GIVEN a InputCheckValid with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "speed_units", visitor);
+  auto input_check_valid = InputValidate("speed_units", visitor);
 
   // WHEN we visit with a TwistStamped that is valid in "speed_units" mode
   auto command = TwistStamped{};
   const auto kVelocity = 10.0;
   command.twist.angular.z = kVelocity;
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was called
   ASSERT_EQ(visitor->count, 1U) << "The visitor should have been called.";
@@ -154,13 +158,12 @@ TEST(InputCheckValidTests, NanTwistStampScaled)  // NOLINT
 {
   // GIVEN a InputCheckValidScaled with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "scaled", visitor);
+  auto input_check_valid = InputValidate("scaled", visitor);
 
   // WHEN we visit with a TwistStamped containing a NaN
   auto command = TwistStamped{};
   command.twist.angular.z = static_cast<double>(NAN);
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
   ASSERT_EQ(visitor->count, 0U) << "The visitor should NOT have been called.";
@@ -170,13 +173,12 @@ TEST(InputCheckValidTests, NanTwistStampSpeedUnits)  // NOLINT
 {
   // GIVEN a InputCheckValidSpeedUnits with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "speed_units", visitor);
+  auto input_check_valid = InputValidate("speed_units", visitor);
 
   // WHEN we visit with a TwistStamped containing a NaN
   auto command = TwistStamped{};
   command.twist.angular.z = static_cast<double>(NAN);
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
   ASSERT_EQ(visitor->count, 0U) << "The visitor should NOT have been called.";
@@ -186,13 +188,12 @@ TEST(InputCheckValidTests, NanJointJogScaled)  // NOLINT
 {
   // GIVEN a InputCheckValidScaled with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "scaled", visitor);
+  auto input_check_valid = InputValidate("scaled", visitor);
 
   // WHEN we visit with a JointJog containing a NaN
   auto command = JointJog{};
   command.velocities.push_back(static_cast<double>(NAN));
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
   ASSERT_EQ(visitor->count, 0U) << "The visitor should NOT have been called.";
@@ -202,13 +203,12 @@ TEST(InputCheckValidTests, NanJointJogSpeedUnits)  // NOLINT
 {
   // GIVEN a InputCheckValidSpeedUnits with with a Visitor that counts
   auto visitor = std::make_shared<CountingVisitor>();
-  auto input_check_valid = makeInputCheckValid(
-      std::make_shared<rclcpp::Node>("_"), "speed_units", visitor);
+  auto input_check_valid = InputValidate("speed_units", visitor);
 
   // WHEN we visit with a JointJog containing a NaN
   auto command = JointJog{};
   command.velocities.push_back(static_cast<double>(NAN));
-  std::visit(*input_check_valid, InputCommand{command});
+  std::visit(input_check_valid, InputCommand{command});
 
   // THEN we expect the visitor was not called
   ASSERT_EQ(visitor->count, 0U) << "The visitor should NOT have been called.";

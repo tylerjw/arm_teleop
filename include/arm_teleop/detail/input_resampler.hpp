@@ -83,12 +83,18 @@ class InputResampler : public InputVisitor {
   }
 
  public:
-  InputResampler(const rclcpp::Node::SharedPtr& node,
-                 std::chrono::nanoseconds period,
-                 const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, rate_{period}, next_{next}, running_{false} {
-    assert(node_ != nullptr);
-    assert(next_ != nullptr);
+  InputResampler(rclcpp::Node::SharedPtr node, std::chrono::nanoseconds period,
+                 std::shared_ptr<InputVisitor> next)
+      : node_{std::move(node)},
+        rate_{period},
+        next_{std::move(next)},
+        running_{false} {
+    if (!static_cast<bool>(node_)) {
+      throw std::runtime_error("Node was not valid");
+    }
+    if (!static_cast<bool>(next_)) {
+      throw std::runtime_error("Next Visitor was not valid");
+    }
   }
 
   ~InputResampler() override { stopThread(); }

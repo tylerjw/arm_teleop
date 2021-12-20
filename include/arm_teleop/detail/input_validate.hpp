@@ -28,71 +28,64 @@
 
 #pragma once
 
-#include <assert.h>
-
 #include <arm_teleop/detail/input_command.hpp>
 #include <arm_teleop/detail/logger.hpp>
 #include <control_msgs/msg/detail/joint_jog__struct.hpp>
+#include <functional>
 #include <geometry_msgs/msg/detail/twist_stamped__struct.hpp>
 #include <memory>
 #include <rclcpp/node.hpp>
 #include <string>
 #include <string_view>
+#include <variant>
 
 namespace arm_teleop::detail {
+
 /**
- * @brief      Validates that the input messages do not contain NAN and in the
- * case of TwistStamped that it is within the range [-1,1].
+ * @brief      This visitor validates the input messages are valid.
  */
-class InputCheckValidScaled : public InputVisitor {
-  rclcpp::Node::SharedPtr node_ = nullptr;
+class InputValidate : public InputVisitor {
+ public:
+  // TODO(tylerjw): create result type instead of optional<string>
+  template <typename T>
+  using Validate = std::function<std::optional<std::string>(const T&)>;
+
+ private:
   std::shared_ptr<InputVisitor> next_ = nullptr;
   Logger logger_ = Logger("arm_teleop.input_check_valid_scaled");
+  Validate<geometry_msgs::msg::TwistStamped> validateTwistStamped;
+  Validate<control_msgs::msg::JointJog> validateJointJog;
+
+  template <typename T>
+  void operatorImpl(const T& command, const Validate<T>& validate) {
+    if (auto error = validate(command)) {
+      logger_.error(*error + "  Dropping message.");
+      return;
+    }
+
+    // All is good, visit the next one
+    std::visit(*next_, InputCommand{command});
+  }
 
  public:
-  InputCheckValidScaled(const rclcpp::Node::SharedPtr& node,
-                        const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, next_{next} {
-    assert(node_ != nullptr);
-    assert(next_ != nullptr);
+  /**
+   * @brief      Constructs visitor for validating input commands.  Invalid
+   * messages are dropped.
+   *
+   * @param[in]  command_in_type  The command in type (`scaled` or
+   * `speed_units`)
+   * @param[in]  next             The next visitor
+   */
+  InputValidate(std::string_view command_in_type,
+                std::shared_ptr<InputVisitor> next);
+  ~InputValidate() override = default;
+  void operator()(const geometry_msgs::msg::TwistStamped& command) override {
+    operatorImpl(command, validateTwistStamped);
   }
-  ~InputCheckValidScaled() override = default;
-  void operator()(const geometry_msgs::msg::TwistStamped& command) override;
-  void operator()(const control_msgs::msg::JointJog& command) override;
-};
 
-/**
- * @brief      Validates that the input messages do not contain NAN.
- */
-class InputCheckValidSpeedUnits : public InputVisitor {
-  rclcpp::Node::SharedPtr node_ = nullptr;
-  std::shared_ptr<InputVisitor> next_ = nullptr;
-  Logger logger_ = Logger("arm_teleop.input_check_valid_speed_units");
-
- public:
-  InputCheckValidSpeedUnits(const rclcpp::Node::SharedPtr& node,
-                            const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, next_{next} {
-    assert(node_ != nullptr);
-    assert(next_ != nullptr);
+  void operator()(const control_msgs::msg::JointJog& command) override {
+    operatorImpl(command, validateJointJog);
   }
-  ~InputCheckValidSpeedUnits() override = default;
-  void operator()(const geometry_msgs::msg::TwistStamped& command) override;
-  void operator()(const control_msgs::msg::JointJog& command) override;
 };
-
-/**
- * @brief      Makes an input check valid visitor.
- *
- * @param[in]  node             The node
- * @param[in]  command_in_type  The command in type.  Valid values are `scaled`
- * and `speed_units`.  Throws runtime_error if anyting else is passed in.
- * @param[in]  next             The next
- *
- * @return     A shared_ptr<InputVisitor>.
- */
-std::shared_ptr<InputVisitor> makeInputCheckValid(
-    const rclcpp::Node::SharedPtr& node, std::string_view command_in_type,
-    const std::shared_ptr<InputVisitor>& next);
 
 }  // namespace arm_teleop::detail

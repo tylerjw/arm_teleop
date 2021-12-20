@@ -46,11 +46,14 @@ class TimestampNow : public InputVisitor {
   std::shared_ptr<InputVisitor> next_ = nullptr;
 
  public:
-  TimestampNow(const rclcpp::Node::SharedPtr& node,
-               const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, next_{next} {
-    assert(node_ != nullptr);
-    assert(next_ != nullptr);
+  TimestampNow(rclcpp::Node::SharedPtr node, std::shared_ptr<InputVisitor> next)
+      : node_{std::move(node)}, next_{std::move(next)} {
+    if (!static_cast<bool>(node_)) {
+      throw std::runtime_error("Node was not valid");
+    }
+    if (!static_cast<bool>(next_)) {
+      throw std::runtime_error("Next Visitor was not valid");
+    }
   }
   ~TimestampNow() override = default;
 
@@ -83,12 +86,19 @@ class StaleCommandHalt : public InputVisitor {
   std::shared_ptr<InputVisitor> next_ = nullptr;
 
  public:
-  StaleCommandHalt(const rclcpp::Node::SharedPtr& node,
+  StaleCommandHalt(rclcpp::Node::SharedPtr node,
                    const rclcpp::Duration& timeout, std::function<void()> halt,
-                   const std::shared_ptr<InputVisitor>& next)
-      : node_{node}, timeout_{timeout}, halt_{halt}, next_{next} {
-    assert(node_ != nullptr);
-    assert(next_ != nullptr);
+                   std::shared_ptr<InputVisitor> next)
+      : node_{std::move(node)},
+        timeout_{timeout},
+        halt_{halt},
+        next_{std::move(next)} {
+    if (!static_cast<bool>(node_)) {
+      throw std::runtime_error("Node was not valid");
+    }
+    if (!static_cast<bool>(next_)) {
+      throw std::runtime_error("Next Visitor was not valid");
+    }
   }
   ~StaleCommandHalt() override = default;
 

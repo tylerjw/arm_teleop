@@ -9,7 +9,7 @@ ROS 2 package for Teleoperation of a Robot Arm
 
 [API Documentation](https://tylerjw.github.io/arm_teleop/)
 
-## Building with sanitizers and linters locally
+## Building with sanitizers and linters
 
 Here are the sanitizer and linter builds done in CI:
 
@@ -42,7 +42,7 @@ Run tests with console output:
 colcon test --event-handlers console_direct+
 ```
 
-## Building doxygen site locally
+## Building doxygen site
 
 Build:
 ```bash
