@@ -83,6 +83,7 @@ $(function() {
 <code>#include &lt;rclcpp/time.hpp&gt;</code><br />
 <code>#include &lt;rclcpp/utilities.hpp&gt;</code><br />
 <code>#include &lt;std_msgs/msg/detail/header__struct.hpp&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
 <code>#include &quot;gtest/gtest-message.h&quot;</code><br />
 <code>#include &quot;gtest/gtest-test-part.h&quot;</code><br />
@@ -93,38 +94,47 @@ Include dependency graph for input_stale_command_tests.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="input__stale__command__tests_8cpp__incl.png" border="0" usemap="#test_2input__stale__command__tests_8cpp" alt=""/></div>
 <map name="test_2input__stale__command__tests_8cpp" id="test_2input__stale__command__tests_8cpp">
-<area shape="rect" title=" " alt="" coords="1424,5,1618,47"/>
-<area shape="rect" href="input__command_8hpp.html" title=" " alt="" coords="458,184,632,225"/>
-<area shape="rect" title=" " alt="" coords="719,281,787,307"/>
-<area shape="rect" href="input__stale__command_8hpp.html" title=" " alt="" coords="636,95,811,136"/>
-<area shape="rect" title=" " alt="" coords="810,191,896,218"/>
-<area shape="rect" title=" " alt="" coords="921,191,998,218"/>
-<area shape="rect" title=" " alt="" coords="1048,95,1231,136"/>
-<area shape="rect" title=" " alt="" coords="1255,95,1456,136"/>
-<area shape="rect" title=" " alt="" coords="1481,102,1561,129"/>
-<area shape="rect" title=" " alt="" coords="1585,102,1732,129"/>
-<area shape="rect" title=" " alt="" coords="1756,102,1881,129"/>
-<area shape="rect" title=" " alt="" coords="1905,102,2028,129"/>
-<area shape="rect" title=" " alt="" coords="2052,102,2195,129"/>
-<area shape="rect" title=" " alt="" coords="2220,95,2377,136"/>
-<area shape="rect" title=" " alt="" coords="2401,102,2569,129"/>
-<area shape="rect" title=" " alt="" coords="2593,102,2758,129"/>
-<area shape="rect" title=" " alt="" coords="2782,102,2958,129"/>
-<area shape="rect" href="input__visitors_8hpp.html" title=" " alt="" coords="140,102,278,129"/>
-<area shape="rect" title=" " alt="" coords="266,273,440,315"/>
-<area shape="rect" title=" " alt="" coords="465,273,660,315"/>
-<area shape="rect" title=" " alt="" coords="302,191,434,218"/>
-<area shape="rect" title=" " alt="" coords="210,191,277,218"/>
-<area shape="rect" title=" " alt="" coords="72,191,136,218"/>
+<area shape="rect" title=" " alt="" coords="992,5,1186,47"/>
+<area shape="rect" href="input__command_8hpp.html" title=" " alt="" coords="347,184,522,225"/>
+<area shape="rect" title=" " alt="" coords="230,281,298,307"/>
+<area shape="rect" href="input__stale__command_8hpp.html" title=" " alt="" coords="148,95,323,136"/>
+<area shape="rect" title=" " alt="" coords="32,191,119,218"/>
+<area shape="rect" title=" " alt="" coords="144,191,221,218"/>
+<area shape="rect" title=" " alt="" coords="399,95,582,136"/>
+<area shape="rect" title=" " alt="" coords="606,95,807,136"/>
+<area shape="rect" title=" " alt="" coords="832,102,912,129"/>
+<area shape="rect" title=" " alt="" coords="936,102,1082,129"/>
+<area shape="rect" title=" " alt="" coords="1106,102,1232,129"/>
+<area shape="rect" title=" " alt="" coords="1256,102,1378,129"/>
+<area shape="rect" title=" " alt="" coords="1403,102,1546,129"/>
+<area shape="rect" title=" " alt="" coords="1570,95,1728,136"/>
+<area shape="rect" title=" " alt="" coords="1752,102,1839,129"/>
+<area shape="rect" title=" " alt="" coords="1864,102,2032,129"/>
+<area shape="rect" title=" " alt="" coords="2056,102,2221,129"/>
+<area shape="rect" title=" " alt="" coords="2245,102,2421,129"/>
+<area shape="rect" href="input__visitors_8hpp.html" title=" " alt="" coords="2445,102,2584,129"/>
+<area shape="rect" title=" " alt="" coords="547,273,722,315"/>
+<area shape="rect" title=" " alt="" coords="328,273,522,315"/>
+<area shape="rect" title=" " alt="" coords="884,191,1016,218"/>
+<area shape="rect" title=" " alt="" coords="2376,191,2442,218"/>
+<area shape="rect" title=" " alt="" coords="2517,191,2581,218"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a934c668e30ff7661a3cf2617924ba0e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a934c668e30ff7661a3cf2617924ba0e5">TEST</a> (InputReamplerTests, NullNodeTimestampNow)</td></tr>
+<tr class="separator:a934c668e30ff7661a3cf2617924ba0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba512f9c92020e3208dc2ee28cbf304a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#aba512f9c92020e3208dc2ee28cbf304a">TEST</a> (InputReamplerTests, NullVisitorTimestampNow)</td></tr>
+<tr class="separator:aba512f9c92020e3208dc2ee28cbf304a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00c78fe612144f6a0ce8c1855171aaaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a00c78fe612144f6a0ce8c1855171aaaf">TEST</a> (InputStaleCommandTests, TimeStampIsNearNowJointJog)</td></tr>
 <tr class="separator:a00c78fe612144f6a0ce8c1855171aaaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a276dc626c135edb3136cfd099b484c29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a276dc626c135edb3136cfd099b484c29">TEST</a> (InputStaleCommandTests, TimeStampIsNearNowTwistStamped)</td></tr>
 <tr class="separator:a276dc626c135edb3136cfd099b484c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1bc56ed5fe79910b1b13cf0e509b02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a4e1bc56ed5fe79910b1b13cf0e509b02">TEST</a> (InputReamplerTests, NullNodeStaleCommandHalt)</td></tr>
+<tr class="separator:a4e1bc56ed5fe79910b1b13cf0e509b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a962cca5fdabc86faf90339b057d223cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a962cca5fdabc86faf90339b057d223cc">TEST</a> (InputReamplerTests, NullVisitorStaleCommandHalt)</td></tr>
+<tr class="separator:a962cca5fdabc86faf90339b057d223cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cc24aeb430be109f2425b2ec7ca9f7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a9cc24aeb430be109f2425b2ec7ca9f7b">TEST</a> (InputStaleCommandTests, HaltTwistStamped)</td></tr>
 <tr class="separator:a9cc24aeb430be109f2425b2ec7ca9f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a863ef29fbe43e6b09f424c271f9c60d2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__stale__command__tests_8cpp.html#a863ef29fbe43e6b09f424c271f9c60d2">TEST</a> (InputStaleCommandTests, HaltJointJog)</td></tr>
@@ -165,8 +175,120 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4e1bc56ed5fe79910b1b13cf0e509b02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1bc56ed5fe79910b1b13cf0e509b02">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullNodeStaleCommandHalt&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a934c668e30ff7661a3cf2617924ba0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a934c668e30ff7661a3cf2617924ba0e5">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullNodeTimestampNow&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a962cca5fdabc86faf90339b057d223cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a962cca5fdabc86faf90339b057d223cc">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullVisitorStaleCommandHalt&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba512f9c92020e3208dc2ee28cbf304a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba512f9c92020e3208dc2ee28cbf304a">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullVisitorTimestampNow&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a863ef29fbe43e6b09f424c271f9c60d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a863ef29fbe43e6b09f424c271f9c60d2">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a863ef29fbe43e6b09f424c271f9c60d2">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,7 +316,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9cc24aeb430be109f2425b2ec7ca9f7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cc24aeb430be109f2425b2ec7ca9f7b">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc24aeb430be109f2425b2ec7ca9f7b">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +344,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a9a065fb88271b3190e15470d7faa22ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a065fb88271b3190e15470d7faa22ba">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a065fb88271b3190e15470d7faa22ba">&#9670;&nbsp;</a></span>TEST() <span class="overload">[7/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,7 +372,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a318f108ebd38f1c4a960b26c36c522c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a318f108ebd38f1c4a960b26c36c522c6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a318f108ebd38f1c4a960b26c36c522c6">&#9670;&nbsp;</a></span>TEST() <span class="overload">[8/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +400,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a00c78fe612144f6a0ce8c1855171aaaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00c78fe612144f6a0ce8c1855171aaaf">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c78fe612144f6a0ce8c1855171aaaf">&#9670;&nbsp;</a></span>TEST() <span class="overload">[9/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -306,7 +428,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a276dc626c135edb3136cfd099b484c29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a276dc626c135edb3136cfd099b484c29">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a276dc626c135edb3136cfd099b484c29">&#9670;&nbsp;</a></span>TEST() <span class="overload">[10/10]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

@@ -116,33 +116,37 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a77493ed7c44155fbff1238f40aac383e">   51</a></span>&#160;  <a class="code" href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a77493ed7c44155fbff1238f40aac383e">InputSubscriber</a>(<span class="keyword">const</span> rclcpp::Node::SharedPtr&amp; node,</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a0e3c1e2d71551137135cbf0b9c93e91c">   51</a></span>&#160;  <a class="code" href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a0e3c1e2d71551137135cbf0b9c93e91c">InputSubscriber</a>(<span class="keyword">const</span> rclcpp::Node::SharedPtr&amp; node,</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                  <span class="keyword">const</span> std::string&amp; twist_stamped_topic,</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  <span class="keyword">const</span> std::string&amp; joint_jog_topic,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  <span class="keyword">const</span> std::shared_ptr&lt;InputVisitor&gt;&amp; next) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    assert(node != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    assert(next != <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    twist_stamped_sub_ =</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        node-&gt;create_subscription&lt;geometry_msgs::msg::TwistStamped&gt;(</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            twist_stamped_topic, rclcpp::SystemDefaultsQoS(),</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            [=](std::shared_ptr&lt;geometry_msgs::msg::TwistStamped&gt; msg) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;              std::visit(*next, <a class="code" href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">InputCommand</a>{*msg});</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            });</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    joint_cmd_sub_ = node-&gt;create_subscription&lt;control_msgs::msg::JointJog&gt;(</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        joint_jog_topic, rclcpp::SystemDefaultsQoS(),</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        [=](std::shared_ptr&lt;control_msgs::msg::JointJog&gt; msg) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;          std::visit(*next, <a class="code" href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">InputCommand</a>{*msg});</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        });</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}  <span class="comment">// namespace arm_teleop::detail</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  std::shared_ptr&lt;InputVisitor&gt; next) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (!<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(node)) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;      <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Node was not valid&quot;</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span> (!<span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(next)) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Next Visitor was not valid&quot;</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    twist_stamped_sub_ =</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        node-&gt;create_subscription&lt;geometry_msgs::msg::TwistStamped&gt;(</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            twist_stamped_topic, rclcpp::SystemDefaultsQoS(),</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            [=](std::shared_ptr&lt;geometry_msgs::msg::TwistStamped&gt; msg) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;              std::visit(*next, <a class="code" href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">InputCommand</a>{*msg});</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            });</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    joint_cmd_sub_ = node-&gt;create_subscription&lt;control_msgs::msg::JointJog&gt;(</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        joint_jog_topic, rclcpp::SystemDefaultsQoS(),</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        [=](std::shared_ptr&lt;control_msgs::msg::JointJog&gt; msg) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;          std::visit(*next, <a class="code" href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">InputCommand</a>{*msg});</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        });</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}  <span class="comment">// namespace arm_teleop::detail</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassarm__teleop_1_1detail_1_1InputSubscriber_html"><div class="ttname"><a href="classarm__teleop_1_1detail_1_1InputSubscriber.html">arm_teleop::detail::InputSubscriber</a></div><div class="ttdoc">Subscribes to the two input topics and calls visitor on them.</div><div class="ttdef"><b>Definition:</b> input_subscriber.hpp:44</div></div>
-<div class="ttc" id="anamespacearm__teleop_1_1detail_html"><div class="ttname"><a href="namespacearm__teleop_1_1detail.html">arm_teleop::detail</a></div><div class="ttdef"><b>Definition:</b> input_check_valid.hpp:42</div></div>
+<div class="ttc" id="anamespacearm__teleop_1_1detail_html"><div class="ttname"><a href="namespacearm__teleop_1_1detail.html">arm_teleop::detail</a></div><div class="ttdef"><b>Definition:</b> input_command.hpp:35</div></div>
 <div class="ttc" id="ainput__command_8hpp_html"><div class="ttname"><a href="input__command_8hpp.html">input_command.hpp</a></div></div>
-<div class="ttc" id="aclassarm__teleop_1_1detail_1_1InputSubscriber_html_a77493ed7c44155fbff1238f40aac383e"><div class="ttname"><a href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a77493ed7c44155fbff1238f40aac383e">arm_teleop::detail::InputSubscriber::InputSubscriber</a></div><div class="ttdeci">InputSubscriber(const rclcpp::Node::SharedPtr &amp;node, const std::string &amp;twist_stamped_topic, const std::string &amp;joint_jog_topic, const std::shared_ptr&lt; InputVisitor &gt; &amp;next)</div><div class="ttdef"><b>Definition:</b> input_subscriber.hpp:51</div></div>
 <div class="ttc" id="anamespacearm__teleop_1_1detail_html_a9ecbf5d4dcffd33129b0b0083deda3db"><div class="ttname"><a href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">arm_teleop::detail::InputCommand</a></div><div class="ttdeci">std::variant&lt; geometry_msgs::msg::TwistStamped, control_msgs::msg::JointJog &gt; InputCommand</div><div class="ttdef"><b>Definition:</b> input_command.hpp:40</div></div>
+<div class="ttc" id="aclassarm__teleop_1_1detail_1_1InputSubscriber_html_a0e3c1e2d71551137135cbf0b9c93e91c"><div class="ttname"><a href="classarm__teleop_1_1detail_1_1InputSubscriber.html#a0e3c1e2d71551137135cbf0b9c93e91c">arm_teleop::detail::InputSubscriber::InputSubscriber</a></div><div class="ttdeci">InputSubscriber(const rclcpp::Node::SharedPtr &amp;node, const std::string &amp;twist_stamped_topic, const std::string &amp;joint_jog_topic, std::shared_ptr&lt; InputVisitor &gt; next)</div><div class="ttdef"><b>Definition:</b> input_subscriber.hpp:51</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

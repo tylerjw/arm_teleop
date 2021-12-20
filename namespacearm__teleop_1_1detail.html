@@ -67,8 +67,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">arm_teleop::detail Namespace Reference</div>  </div>
 </div><!--header-->
@@ -76,17 +75,14 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValidScaled.html">InputCheckValidScaled</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates that the input messages do not contain NAN and in the case of TwistStamped that it is within the range [-1,1].  <a href="classarm__teleop_1_1detail_1_1InputCheckValidScaled.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputCheckValidSpeedUnits.html">InputCheckValidSpeedUnits</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates that the input messages do not contain NAN.  <a href="classarm__teleop_1_1detail_1_1InputCheckValidSpeedUnits.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html">InputResampler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visitor that stores the the input command and then calls the next visitor at a specified rate.  <a href="classarm__teleop_1_1detail_1_1InputResampler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputSubscriber.html">InputSubscriber</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to the two input topics and calls visitor on them.  <a href="classarm__teleop_1_1detail_1_1InputSubscriber.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputValidate.html">InputValidate</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This visitor validates the input messages are valid.  <a href="classarm__teleop_1_1detail_1_1InputValidate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface class for input visitors.  <a href="classarm__teleop_1_1detail_1_1InputVisitor.html#details">More...</a><br /></td></tr>
@@ -105,12 +101,6 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a9ecbf5d4dcffd33129b0b0083deda3db"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacearm__teleop_1_1detail.html#a9ecbf5d4dcffd33129b0b0083deda3db">InputCommand</a> = std::variant&lt; geometry_msgs::msg::TwistStamped, control_msgs::msg::JointJog &gt;</td></tr>
 <tr class="separator:a9ecbf5d4dcffd33129b0b0083deda3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a1ebdd23339d5a3b4f057f449c6cda74f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacearm__teleop_1_1detail.html#a1ebdd23339d5a3b4f057f449c6cda74f">makeInputCheckValid</a> (const rclcpp::Node::SharedPtr &amp;node, std::string_view command_in_type, const std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; &amp;next)</td></tr>
-<tr class="memdesc:a1ebdd23339d5a3b4f057f449c6cda74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes an input check valid visitor.  <a href="namespacearm__teleop_1_1detail.html#a1ebdd23339d5a3b4f057f449c6cda74f">More...</a><br /></td></tr>
-<tr class="separator:a1ebdd23339d5a3b4f057f449c6cda74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a9ecbf5d4dcffd33129b0b0083deda3db"></a>
@@ -125,70 +115,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>InputCommand type used by all Visitor callables </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a1ebdd23339d5a3b4f057f449c6cda74f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ebdd23339d5a3b4f057f449c6cda74f">&#9670;&nbsp;</a></span>makeInputCheckValid()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; arm_teleop::detail::makeInputCheckValid </td>
-          <td>(</td>
-          <td class="paramtype">const rclcpp::Node::SharedPtr &amp;&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>command_in_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>next</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Makes an input check valid visitor. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>The node </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">command_in_type</td><td>The command in type. Valid values are <code>scaled</code> and <code>speed_units</code>. Throws runtime_error if anyting else is passed in. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">next</td><td>The next</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A shared_ptr&lt;InputVisitor&gt;. </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_cgraph.png" border="0" usemap="#namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_cgraph" alt=""/></div>
-<map name="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_cgraph" id="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_cgraph">
-<area shape="rect" title="Makes an input check valid visitor." alt="" coords="5,5,176,47"/>
-<area shape="rect" href="classarm__teleop_1_1detail_1_1Logger.html#afa55019a2084df9d8c0c26491ae6f90b" title=" " alt="" coords="224,5,365,47"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_icgraph.png" border="0" usemap="#namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_icgraph" alt=""/></div>
-<map name="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_icgraph" id="namespacearm__teleop_1_1detail_a1ebdd23339d5a3b4f057f449c6cda74f_icgraph">
-<area shape="rect" title="Makes an input check valid visitor." alt="" coords="108,5,279,47"/>
-<area shape="rect" href="input__check__valid__tests_8cpp.html#a7776f5122d0907e2da8a9087323e68de" title=" " alt="" coords="5,13,60,39"/>
-</map>
-</div>
 
 </div>
 </div>

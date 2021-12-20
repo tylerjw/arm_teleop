@@ -69,7 +69,7 @@ $(function() {
 <p>ROS 2 package for Teleoperation of a Robot Arm</p>
 <p><a href="https://tylerjw.github.io/arm_teleop/">API Documentation</a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Building with sanitizers and linters locally</h1>
+Building with sanitizers and linters</h1>
 <p>Here are the sanitizer and linter builds done in CI:</p>
 <div class="fragment"><div class="line">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug \</div>
 <div class="line">                          -DENABLE_SANITIZER_ADDRESS=ON \</div>
@@ -85,7 +85,7 @@ Building with sanitizers and linters locally</h1>
 <div class="line">             --event-handlers console_direct+</div>
 </div><!-- fragment --><p>Run tests with console output: </p><div class="fragment"><div class="line">colcon test --event-handlers console_direct+</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
-Building doxygen site locally</h1>
+Building doxygen site</h1>
 <p>Build: </p><div class="fragment"><div class="line">colcon build --cmake-args -DENABLE_DOXYGEN=ON \</div>
 <div class="line">             --cmake-target doxygen-docs \</div>
 <div class="line">             --event-handlers console_direct+</div>

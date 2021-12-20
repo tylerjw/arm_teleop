@@ -79,54 +79,60 @@ $(function() {
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
 <code>#include &lt;rclcpp/executors.hpp&gt;</code><br />
-<code>#include &lt;rclcpp/node.hpp&gt;</code><br />
 <code>#include &lt;rclcpp/publisher.hpp&gt;</code><br />
 <code>#include &lt;rclcpp/qos.hpp&gt;</code><br />
 <code>#include &lt;rclcpp/qos_event.hpp&gt;</code><br />
 <code>#include &lt;rclcpp/utilities.hpp&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;variant&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;gtest/gtest-message.h&quot;</code><br />
 <code>#include &quot;gtest/gtest-test-part.h&quot;</code><br />
 <code>#include &quot;gtest/gtest_pred_impl.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="input__visitors_8hpp_source.html">input_visitors.hpp</a>&quot;</code><br />
+<code>#include &quot;rclcpp/node.hpp&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for input_subscriber_tests.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="input__subscriber__tests_8cpp__incl.png" border="0" usemap="#test_2input__subscriber__tests_8cpp" alt=""/></div>
 <map name="test_2input__subscriber__tests_8cpp" id="test_2input__subscriber__tests_8cpp">
-<area shape="rect" title=" " alt="" coords="1797,5,1955,47"/>
-<area shape="rect" href="input__command_8hpp.html" title=" " alt="" coords="545,184,719,225"/>
-<area shape="rect" title=" " alt="" coords="902,281,970,307"/>
-<area shape="rect" href="input__subscriber_8hpp.html" title=" " alt="" coords="751,95,926,136"/>
-<area shape="rect" title=" " alt="" coords="1040,191,1117,218"/>
-<area shape="rect" title=" " alt="" coords="1185,102,1241,129"/>
-<area shape="rect" title=" " alt="" coords="1266,95,1449,136"/>
-<area shape="rect" title=" " alt="" coords="1473,95,1674,136"/>
-<area shape="rect" title=" " alt="" coords="1698,102,1774,129"/>
-<area shape="rect" title=" " alt="" coords="1798,102,1954,129"/>
-<area shape="rect" title=" " alt="" coords="1979,102,2104,129"/>
-<area shape="rect" title=" " alt="" coords="2128,102,2280,129"/>
-<area shape="rect" title=" " alt="" coords="2305,102,2421,129"/>
-<area shape="rect" title=" " alt="" coords="2445,102,2605,129"/>
-<area shape="rect" title=" " alt="" coords="2630,102,2773,129"/>
-<area shape="rect" title=" " alt="" coords="2797,102,2859,129"/>
-<area shape="rect" title=" " alt="" coords="2884,102,3052,129"/>
-<area shape="rect" title=" " alt="" coords="3076,102,3241,129"/>
-<area shape="rect" title=" " alt="" coords="3265,102,3441,129"/>
-<area shape="rect" href="input__visitors_8hpp.html" title=" " alt="" coords="204,102,343,129"/>
-<area shape="rect" title=" " alt="" coords="377,273,551,315"/>
-<area shape="rect" title=" " alt="" coords="576,273,771,315"/>
-<area shape="rect" title=" " alt="" coords="795,191,882,218"/>
-<area shape="rect" title=" " alt="" coords="337,191,469,218"/>
-<area shape="rect" title=" " alt="" coords="907,191,965,218"/>
+<area shape="rect" title=" " alt="" coords="1885,5,2043,47"/>
+<area shape="rect" href="input__command_8hpp.html" title=" " alt="" coords="337,184,511,225"/>
+<area shape="rect" title=" " alt="" coords="715,281,783,307"/>
+<area shape="rect" href="input__subscriber_8hpp.html" title=" " alt="" coords="719,95,894,136"/>
+<area shape="rect" title=" " alt="" coords="1039,191,1116,218"/>
+<area shape="rect" title=" " alt="" coords="1184,102,1240,129"/>
+<area shape="rect" title=" " alt="" coords="1265,95,1447,136"/>
+<area shape="rect" title=" " alt="" coords="1471,95,1673,136"/>
+<area shape="rect" title=" " alt="" coords="1697,102,1773,129"/>
+<area shape="rect" title=" " alt="" coords="1797,102,1953,129"/>
+<area shape="rect" title=" " alt="" coords="1977,102,2129,129"/>
+<area shape="rect" title=" " alt="" coords="2154,102,2270,129"/>
+<area shape="rect" title=" " alt="" coords="2295,102,2455,129"/>
+<area shape="rect" title=" " alt="" coords="2479,102,2622,129"/>
+<area shape="rect" title=" " alt="" coords="2646,102,2733,129"/>
+<area shape="rect" title=" " alt="" coords="2757,102,2819,129"/>
+<area shape="rect" title=" " alt="" coords="2844,102,3012,129"/>
+<area shape="rect" title=" " alt="" coords="3036,102,3201,129"/>
+<area shape="rect" title=" " alt="" coords="3225,102,3401,129"/>
+<area shape="rect" href="input__visitors_8hpp.html" title=" " alt="" coords="195,102,333,129"/>
+<area shape="rect" title=" " alt="" coords="3425,102,3551,129"/>
+<area shape="rect" title=" " alt="" coords="183,273,358,315"/>
+<area shape="rect" title=" " alt="" coords="383,273,577,315"/>
+<area shape="rect" title=" " alt="" coords="845,191,931,218"/>
+<area shape="rect" title=" " alt="" coords="535,191,667,218"/>
+<area shape="rect" title=" " alt="" coords="956,191,1015,218"/>
 <area shape="rect" title=" " alt="" coords="5,191,72,218"/>
-<area shape="rect" title=" " alt="" coords="147,191,211,218"/>
+<area shape="rect" title=" " alt="" coords="197,191,261,218"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a13c2c851424e77ba13ea280a9a5de930"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__subscriber__tests_8cpp.html#a13c2c851424e77ba13ea280a9a5de930">TEST</a> (InputReamplerTests, NullNode)</td></tr>
+<tr class="separator:a13c2c851424e77ba13ea280a9a5de930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e4c8a2931808bf53e7baf273ed848bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__subscriber__tests_8cpp.html#a0e4c8a2931808bf53e7baf273ed848bc">TEST</a> (InputReamplerTests, NullVisitor)</td></tr>
+<tr class="separator:a0e4c8a2931808bf53e7baf273ed848bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b4673664a627c3290e634186a5e481d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__subscriber__tests_8cpp.html#a3b4673664a627c3290e634186a5e481d">TEST</a> (InputSubscriberTests, NoPublish)</td></tr>
 <tr class="separator:a3b4673664a627c3290e634186a5e481d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af037da464e81337a560dbe2ed4b98597"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input__subscriber__tests_8cpp.html#af037da464e81337a560dbe2ed4b98597">TEST</a> (InputSubscriberTests, TwistStampedVisit)</td></tr>
@@ -167,8 +173,64 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a13c2c851424e77ba13ea280a9a5de930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13c2c851424e77ba13ea280a9a5de930">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullNode&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e4c8a2931808bf53e7baf273ed848bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e4c8a2931808bf53e7baf273ed848bc">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">InputReamplerTests&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NullVisitor&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aae421a34dca403d91cdb453f5e9bc816"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae421a34dca403d91cdb453f5e9bc816">&#9670;&nbsp;</a></span>TEST() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aae421a34dca403d91cdb453f5e9bc816">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,7 +258,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a3b4673664a627c3290e634186a5e481d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b4673664a627c3290e634186a5e481d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4673664a627c3290e634186a5e481d">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +286,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a428f583c8c3aeaf139a167d0d3153fa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a428f583c8c3aeaf139a167d0d3153fa5">&#9670;&nbsp;</a></span>TEST() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a428f583c8c3aeaf139a167d0d3153fa5">&#9670;&nbsp;</a></span>TEST() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,7 +314,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="af037da464e81337a560dbe2ed4b98597"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af037da464e81337a560dbe2ed4b98597">&#9670;&nbsp;</a></span>TEST() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af037da464e81337a560dbe2ed4b98597">&#9670;&nbsp;</a></span>TEST() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

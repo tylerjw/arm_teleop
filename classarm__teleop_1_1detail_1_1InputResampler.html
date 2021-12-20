@@ -98,8 +98,8 @@ Collaboration diagram for arm_teleop::detail::InputResampler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50b5b7171636986f912fe6a7938bfefa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#a50b5b7171636986f912fe6a7938bfefa">InputResampler</a> (const rclcpp::Node::SharedPtr &amp;node, std::chrono::nanoseconds period, const std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; &amp;next)</td></tr>
-<tr class="separator:a50b5b7171636986f912fe6a7938bfefa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65a74fba65b7d015f946fcdb340c9417"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#a65a74fba65b7d015f946fcdb340c9417">InputResampler</a> (rclcpp::Node::SharedPtr node, std::chrono::nanoseconds period, std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; next)</td></tr>
+<tr class="separator:a65a74fba65b7d015f946fcdb340c9417"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5aeedbec8974f54015478018ad83efd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#ad5aeedbec8974f54015478018ad83efd">~InputResampler</a> () override</td></tr>
 <tr class="separator:ad5aeedbec8974f54015478018ad83efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af40c880742f6c365548e6fe1edec5865"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarm__teleop_1_1detail_1_1InputResampler.html#af40c880742f6c365548e6fe1edec5865">operator()</a> (const geometry_msgs::msg::TwistStamped &amp;command) override</td></tr>
@@ -113,8 +113,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Visitor that stores the the input command and then calls the next visitor at a specified rate. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a50b5b7171636986f912fe6a7938bfefa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50b5b7171636986f912fe6a7938bfefa">&#9670;&nbsp;</a></span>InputResampler()</h2>
+<a id="a65a74fba65b7d015f946fcdb340c9417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a74fba65b7d015f946fcdb340c9417">&#9670;&nbsp;</a></span>InputResampler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">arm_teleop::detail::InputResampler::InputResampler </td>
           <td>(</td>
-          <td class="paramtype">const rclcpp::Node::SharedPtr &amp;&#160;</td>
+          <td class="paramtype">rclcpp::Node::SharedPtr&#160;</td>
           <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classarm__teleop_1_1detail_1_1InputVisitor.html">InputVisitor</a> &gt;&#160;</td>
           <td class="paramname"><em>next</em>&#160;</td>
         </tr>
         <tr>
