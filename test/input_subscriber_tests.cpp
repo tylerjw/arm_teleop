@@ -34,11 +34,11 @@
 #include <memory>
 #include <ostream>
 #include <rclcpp/executors.hpp>
-#include <rclcpp/node.hpp>
 #include <rclcpp/publisher.hpp>
 #include <rclcpp/qos.hpp>
 #include <rclcpp/qos_event.hpp>
 #include <rclcpp/utilities.hpp>
+#include <stdexcept>
 #include <variant>
 #include <vector>
 
@@ -50,6 +50,28 @@
 
 using arm_teleop::detail::InputCommand;
 using arm_teleop::detail::InputSubscriber;
+
+TEST(InputReamplerTests, NullNode)  // NOLINT
+{
+  // GIVEN a valid visitor
+  // WHEN we construct InputSubscriber with nullptr for node
+  // THEN we expect it to throw
+  auto visitor = std::make_shared<CountingVisitor>();
+  EXPECT_THROW(  // NOLINT
+      auto resampler = InputSubscriber(nullptr, "a", "b", visitor),
+      std::runtime_error);
+}
+
+TEST(InputReamplerTests, NullVisitor)  // NOLINT
+{
+  // GIVEN a valid node
+  // WHEN we construct InputSubscriber with nullptr for visitor
+  // THEN we expect it to throw
+  auto node = std::make_shared<rclcpp::Node>("_");
+  EXPECT_THROW(  // NOLINT
+      auto resampler = InputSubscriber(node, "a", "b", nullptr),
+      std::runtime_error);
+}
 
 TEST(InputSubscriberTests, NoPublish)  // NOLINT
 {

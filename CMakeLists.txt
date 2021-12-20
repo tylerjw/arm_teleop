@@ -59,7 +59,7 @@ find_package(rclcpp REQUIRED)
 
 add_library(arm_teleop
   src/arm_teleop.cpp
-  src/detail/input_check_valid.cpp
+  src/detail/input_validate.cpp
 )
 target_include_directories(arm_teleop PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

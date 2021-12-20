@@ -28,6 +28,4 @@
 
 #include "arm_teleop/arm_teleop.hpp"  // IWYU pragma: keep
 
-#include <arm_teleop/detail/input_check_valid.hpp>  // IWYU pragma: keep
-
 namespace arm_teleop {}  // namespace arm_teleop

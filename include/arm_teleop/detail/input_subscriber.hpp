@@ -51,9 +51,13 @@ class InputSubscriber {
   InputSubscriber(const rclcpp::Node::SharedPtr& node,
                   const std::string& twist_stamped_topic,
                   const std::string& joint_jog_topic,
-                  const std::shared_ptr<InputVisitor>& next) {
-    assert(node != nullptr);
-    assert(next != nullptr);
+                  std::shared_ptr<InputVisitor> next) {
+    if (!static_cast<bool>(node)) {
+      throw std::runtime_error("Node was not valid");
+    }
+    if (!static_cast<bool>(next)) {
+      throw std::runtime_error("Next Visitor was not valid");
+    }
     twist_stamped_sub_ =
         node->create_subscription<geometry_msgs::msg::TwistStamped>(
             twist_stamped_topic, rclcpp::SystemDefaultsQoS(),

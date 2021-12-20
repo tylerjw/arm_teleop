@@ -39,6 +39,7 @@
 #include <rclcpp/node.hpp>
 #include <rclcpp/time.hpp>
 #include <rclcpp/utilities.hpp>
+#include <stdexcept>
 #include <variant>
 
 #include "gtest/gtest-message.h"
@@ -68,11 +69,32 @@ bool waitFor(const rclcpp::Node::SharedPtr& node,
 using arm_teleop::detail::InputCommand;
 using arm_teleop::detail::InputResampler;
 
+TEST(InputReamplerTests, NullNode)  // NOLINT
+{
+  // GIVEN a valid visitor
+  // WHEN we construct InputResampler with nullptr for node
+  // THEN we expect it to throw
+  auto visitor = std::make_shared<CountingVisitor>();
+  EXPECT_THROW(  // NOLINT
+      auto resampler = InputResampler(nullptr, 1ns, visitor),
+      std::runtime_error);
+}
+
+TEST(InputReamplerTests, NullVisitor)  // NOLINT
+{
+  // GIVEN a valid node
+  // WHEN we construct InputResampler with nullptr for visitor
+  // THEN we expect it to throw
+  auto node = std::make_shared<rclcpp::Node>("_");
+  EXPECT_THROW(  // NOLINT
+      auto resampler = InputResampler(node, 1ns, nullptr), std::runtime_error);
+}
+
 TEST(InputReamplerTests, NoOutputVisit)  // NOLINT
 {
   // GIVEN a InputResampler with with a Visitor that counts output calls
   auto visitor = std::make_shared<CountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_0");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto resampler = InputResampler(node, 100000000ns, visitor);
 
   // WHEN we sleep for twice the period (without ever visiting the resampler)
@@ -86,7 +108,7 @@ TEST(InputReamplerTests, OneVisit)  // NOLINT
 {
   // GIVEN a InputResampler with with a Visitor that counts output calls
   auto visitor = std::make_shared<CountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_1");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto resampler = InputResampler(node, 100000000ns, visitor);
 
   // WHEN we visit the resampler with one message and wait
@@ -104,7 +126,7 @@ TEST(InputReamplerTests, WaitForSomeOutput)  // NOLINT
 {
   // GIVEN a InputResampler with with a Visitor that counts output calls
   auto visitor = std::make_shared<CountingVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_2");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto resampler = InputResampler(node, 10000000ns, visitor);
 
   // WHEN we visit the resampler with one message and wait for some time
@@ -124,7 +146,7 @@ TEST(InputReamplerTests, ReceivedEqualsSent)  // NOLINT
   // GIVEN a InputResampler with Visitor that copies the received command into a
   // local variant
   auto visitor = std::make_shared<ReceivedCommandVisitor>();
-  auto node = std::make_shared<rclcpp::Node>("test_node_3");
+  auto node = std::make_shared<rclcpp::Node>("_");
   auto resampler = InputResampler(node, 10000000ns, visitor);
 
   // WHEN we visit the resampler with one message and wait
